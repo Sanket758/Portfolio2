@@ -1,6 +1,17 @@
-// FIX: Add a triple-slash directive to include Vite's client types.
-// This resolves errors about 'env' not existing on 'import.meta'.
-/// <reference types="vite/client" />
+// FIX: Manually define types for import.meta.env to handle type resolution errors with Vite's client types.
+// This ensures `import.meta.env` is correctly typed without relying on project-wide configuration.
+interface ImportMetaEnv {
+  readonly VITE_FIREBASE_API_KEY: string;
+  readonly VITE_FIREBASE_AUTH_DOMAIN: string;
+  readonly VITE_FIREBASE_PROJECT_ID: string;
+  readonly VITE_FIREBASE_STORAGE_BUCKET: string;
+  readonly VITE_FIREBASE_MESSAGING_SENDER_ID: string;
+  readonly VITE_FIREBASE_APP_ID: string;
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
+}
 
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
