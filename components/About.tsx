@@ -15,7 +15,8 @@ const TimelineItem: React.FC<{ item: Experience }> = ({ item }) => (
     </h3>
     <time className="block mb-2 text-sm font-normal leading-none text-text-secondary">{item.period}</time>
     <ul className="list-disc list-inside space-y-1 text-text-secondary">
-      {item.description.map((point, index) => (
+      {/* FIX: Check if description is an array before mapping to prevent crashes */}
+      {Array.isArray(item.description) && item.description.map((point, index) => (
         <li key={index}>{point}</li>
       ))}
     </ul>

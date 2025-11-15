@@ -26,7 +26,7 @@ const Hero: React.FC = () => {
         </div>
         <div className="order-1 md:order-2">
             <img 
-                src="https://media.licdn.com/dms/image/D4D03AQEG4yM6lpmLUQ/profile-displayphoto-shrink_400_400/0/1715077227702?e=1727913600&v=beta&t=o36jVj5B-gP1UoP3lY-X_Jt7gB7p9Z7vO9r9m9h3H_g" 
+                src="https://picsum.photos/seed/sanket-profile/320/320" 
                 alt="Sanket Gadge" 
                 className="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover border-4 border-secondary shadow-2xl"
             />
