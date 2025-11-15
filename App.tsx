@@ -4,6 +4,7 @@ import { useAuth } from './auth/AuthContext';
 // Import Pages
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
+import BlogPost from './pages/BlogPost';
 
 // Import Portfolio Components
 import Header from './components/Header';
@@ -11,6 +12,7 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Projects from './components/Projects';
 import Skills from './components/Skills';
+import Blogs from './components/Blogs';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
@@ -22,6 +24,7 @@ const Portfolio: React.FC = () => (
       <About />
       <Projects />
       <Skills />
+      <Blogs />
       <Contact />
     </main>
     <Footer />
@@ -34,6 +37,10 @@ const App: React.FC = () => {
 
   if (path.startsWith('/admin')) {
     return isAuthenticated ? <AdminDashboard /> : <AdminLogin />;
+  }
+
+  if (path.startsWith('/blog/')) {
+    return <BlogPost />;
   }
   
   return <Portfolio />;

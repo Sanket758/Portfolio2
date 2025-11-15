@@ -7,6 +7,8 @@ import {
   updateDoc, 
   deleteDoc, 
   doc,
+  query,
+  where,
   DocumentData,
   WithFieldValue
 } from 'firebase/firestore';
@@ -15,6 +17,13 @@ import {
 export const getCollection = async <T>(collectionName: string): Promise<T[]> => {
   const querySnapshot = await getDocs(collection(db, collectionName));
   return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as T));
+};
+
+// Generic function to fetch documents based on a specific field value
+export const getDocumentsByField = async <T>(collectionName: string, field: string, value: string): Promise<T[]> => {
+    const q = query(collection(db, collectionName), where(field, '==', value));
+    const querySnapshot = await getDocs(q);
+    return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as T));
 };
 
 // Generic function to add a document to a collection

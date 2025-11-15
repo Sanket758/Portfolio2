@@ -5,7 +5,7 @@ import { getCollection, addDocument, updateDocument, deleteDocument } from '../.
 import Modal from './Modal';
 import { PlusIcon, TrashIcon, PencilIcon } from '../icons';
 
-const EMPTY_SKILL_STATE = { name: '', level: 50 };
+const EMPTY_SKILL_STATE: Partial<Skill> = { name: '', level: 50, description: '' };
 
 const SkillsManager: React.FC = () => {
   const [skills, setSkills] = useState<Skill[]>([]);
@@ -43,7 +43,7 @@ const SkillsManager: React.FC = () => {
     setCurrentSkill(EMPTY_SKILL_STATE);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setCurrentSkill(prev => ({ ...prev, [name]: name === 'level' ? parseInt(value) : value }));
   };
@@ -117,6 +117,7 @@ const SkillsManager: React.FC = () => {
       <Modal title={isEditing ? 'Edit Skill' : 'Add New Skill'} isOpen={isModalOpen} onClose={handleCloseModal}>
         <form onSubmit={handleSubmit} className="space-y-4">
             <input name="name" value={currentSkill.name || ''} onChange={handleInputChange} placeholder="Skill Name" className="w-full bg-primary p-2 rounded border border-gray-600" required />
+            <textarea name="description" value={currentSkill.description || ''} onChange={handleInputChange} placeholder="Description (e.g., Used for building REST APIs)" className="w-full bg-primary p-2 rounded border border-gray-600" rows={3}></textarea>
             <div>
               <label className="block text-sm font-medium text-text-secondary mb-2">Proficiency Level: {currentSkill.level || 50}%</label>
               <input type="range" name="level" min="0" max="100" value={currentSkill.level || 50} onChange={handleInputChange} className="w-full" />

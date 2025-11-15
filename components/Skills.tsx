@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import type { Skill } from '../types';
 import { getCollection } from '../firebase/firestoreService';
 
-const SkillBar: React.FC<{ skill: Skill }> = ({ skill }) => {
+const SkillItem: React.FC<{ skill: Skill }> = ({ skill }) => {
   return (
     <div className="mb-6">
       <div className="flex justify-between mb-1">
@@ -16,6 +16,9 @@ const SkillBar: React.FC<{ skill: Skill }> = ({ skill }) => {
           style={{ width: `${skill.level}%` }}
         ></div>
       </div>
+      {skill.description && (
+        <p className="text-sm text-text-secondary mt-2">{skill.description}</p>
+      )}
     </div>
   );
 };
@@ -47,7 +50,7 @@ const Skills: React.FC = () => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-2">
             {skills.map((skill) => (
-              <SkillBar key={skill.id} skill={skill} />
+              <SkillItem key={skill.id} skill={skill} />
             ))}
           </div>
         )}
