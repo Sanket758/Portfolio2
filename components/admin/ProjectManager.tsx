@@ -40,7 +40,9 @@ const ProjectManager: React.FC = () => {
   const handleOpenModal = (project?: Project) => {
     if (project) {
       setIsEditing(true);
-      setCurrentProject({ ...project, techStack: project.techStack.join(', ') });
+      // Safely join techStack, even if it's missing or not an array
+      const techStackString = Array.isArray(project.techStack) ? project.techStack.join(', ') : '';
+      setCurrentProject({ ...project, techStack: techStackString });
     } else {
       setIsEditing(false);
       setCurrentProject(EMPTY_PROJECT_STATE);
@@ -62,7 +64,7 @@ const ProjectManager: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     // FIX: currentProject.techStack is now correctly inferred as a string.
-    const techArray = currentProject.techStack.split(',').map(tech => tech.trim());
+    const techArray = currentProject.techStack.split(',').map(tech => tech.trim()).filter(Boolean); // Also filter out empty strings
     const projectData = {
         ...currentProject,
         techStack: techArray,
@@ -114,7 +116,10 @@ const ProjectManager: React.FC = () => {
                 {projects.map(project => (
                   <tr key={project.id} className="border-b border-gray-800 hover:bg-primary">
                     <td className="p-4 font-medium">{project.title}</td>
-                    <td className="p-4 text-sm text-text-secondary">{project.techStack.join(', ')}</td>
+                    <td className="p-4 text-sm text-text-secondary">
+                      {/* FIX: Check if techStack is an array before joining to prevent crash */}
+                      {Array.isArray(project.techStack) ? project.techStack.join(', ') : 'N/A'}
+                    </td>
                     <td className="p-4 flex gap-4">
                       <button onClick={() => handleOpenModal(project)} className="text-blue-400 hover:text-blue-300"><PencilIcon /></button>
                       <button onClick={() => handleDelete(project.id)} className="text-red-500 hover:text-red-400"><TrashIcon /></button>
