@@ -1,62 +1,46 @@
+import React from 'react'
+import { useLang } from '../i18n/LanguageContext'
+import { getSkills } from '../lib/dataLoader'
+import ScrollReveal from './ScrollReveal'
+import { CompositeWaveUnderline } from './visuals/CompositeWaveUnderline'
 
-import React, { useState, useEffect } from 'react';
-import type { Skill } from '../types';
-import { getCollection } from '../firebase/firestoreService';
-
-const SkillItem: React.FC<{ skill: Skill }> = ({ skill }) => {
-  return (
-    <div className="mb-6">
-      <div className="flex justify-between mb-1">
-        <span className="text-base font-medium text-text-primary">{skill.name}</span>
-        <span className="text-sm font-medium text-text-primary">{skill.level}%</span>
-      </div>
-      <div className="w-full bg-gray-700 rounded-full h-2.5">
-        <div 
-          className="bg-accent h-2.5 rounded-full" 
-          style={{ width: `${skill.level}%` }}
-        ></div>
-      </div>
-      {skill.description && (
-        <p className="text-sm text-text-secondary mt-2">{skill.description}</p>
-      )}
-    </div>
-  );
-};
-
+const SKILL_CATEGORIES: Record<string, { label: string; keys: string[] }> = {
+  ml: { label: 'Machine Learning', keys: ['Machine Learning', 'Deep Learning', 'PyTorch', 'TensorFlow', 'FAISS'] },
+  mlops: { label: 'MLOps & Infra', keys: ['MLOps', 'Data Engineering', 'Automation', 'AWS Lambda', 'CI/CD'] },
+  frontend: { label: 'Frontend & Full Stack', keys: ['Python', 'FastAPI', 'MySQL', 'MongoDB', 'React'] },
+  dev: { label: 'Developer Tools', keys: ['GitHub', 'Linux', 'Shell Scripting', 'Feature Engineering', 'AI Ethics', 'Research'] },
+}
 
 const Skills: React.FC = () => {
-  const [skills, setSkills] = useState<Skill[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchSkills = async () => {
-      const data = await getCollection<Skill>('skills');
-      // Sort skills by level, descending
-      data.sort((a, b) => b.level - a.level);
-      setSkills(data);
-      setLoading(false);
-    };
-    fetchSkills();
-  }, []);
+  const { t } = useLang()
+  const [skills, setSkills] = React.useState<any[]>([])
+  React.useEffect(() => { getSkills().then(setSkills) }, [])
 
   return (
-    <section id="skills" className="py-24">
-      <h2 className="text-4xl font-bold text-center mb-12">
-        Technical Skills
-      </h2>
-      <div className="max-w-4xl mx-auto">
-        {loading ? (
-          <p className="text-center text-text-secondary">Loading skills...</p>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-2">
-            {skills.map((skill) => (
-              <SkillItem key={skill.id} skill={skill} />
-            ))}
-          </div>
-        )}
+    <section id="skills" className="section">
+      <div className="container max-w-5xl">
+        <header className="mb-16" style={{textAlign: 'center'}}>
+          <p className="eyebrow">{t.nav.skills}</p>
+          <ScrollReveal><h2 className="h2">{t.skills.title}</h2></ScrollReveal>
+        </header>
+        {Object.entries(SKILL_CATEGORIES).map(([key, { label, keys }]) => {
+          const items = skills.filter((s: any) => keys.includes(s.name))
+          if (items.length === 0) return null
+          return (
+            <div key={key} className="skill-group">
+              <h3>{label}</h3>
+              <CompositeWaveUnderline width={160} height={6} />
+              <div className="pill-row">
+                {items.map((s: any) => (
+                  <span key={s.name} className="pill">{s.name}</span>
+                ))}
+              </div>
+            </div>
+          )
+        })}
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Skills;
+export default Skills

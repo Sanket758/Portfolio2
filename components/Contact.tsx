@@ -1,54 +1,86 @@
-
-import React from 'react';
-import { GitHubIcon, LinkedInIcon } from './icons';
+import React from 'react'
+import { useLang } from '../i18n/LanguageContext'
+import { downloadCV } from '../lib/generateCV'
+import ScrollReveal from './ScrollReveal'
+import { EQBars } from './visuals/EQBars'
 
 const Contact: React.FC = () => {
+  const { t, lang } = useLang()
+  const [submitted, setSubmitted] = React.useState(false)
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const data = new FormData(e.currentTarget)
+    const body = `Name: ${data.get('name')}\nEmail: ${data.get('email')}\nMessage: ${data.get('message')}`
+    window.open(`mailto:gadgesanket75@gmail.com?subject=Portfolio Contact&body=${encodeURIComponent(body)}`, '_self')
+    setSubmitted(true)
+  }
+
   return (
-    <section id="contact" className="py-24">
-      <h2 className="text-4xl font-bold text-center mb-4">
-        Get In Touch
-      </h2>
-      <p className="text-center text-text-secondary mb-12 max-w-2xl mx-auto">
-        I'm currently open to new opportunities and collaborations. Feel free to send me a message, and I'll get back to you as soon as possible.
-      </p>
-      <div className="max-w-3xl mx-auto flex flex-col md:flex-row gap-12">
-        <div className="flex-1">
-            <form className="space-y-6">
-                <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-text-secondary">Full Name</label>
-                    <input type="text" id="name" name="name" className="mt-1 block w-full bg-secondary border border-gray-600 rounded-md shadow-sm py-2 px-3 text-text-primary focus:outline-none focus:ring-accent focus:border-accent" required />
+    <section id="contact" className="section">
+      <div className="container max-w-3xl">
+        <header className="mb-12" style={{textAlign: 'center'}}>
+          <p className="eyebrow">{t.nav.contact}</p>
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 16 }}>
+            <EQBars width={200} height={32} />
+          </div>
+          <ScrollReveal><h2 className="h2">{t.contact.title}</h2></ScrollReveal>
+          <p className="lead" style={{ marginInline: 'auto' }}>{t.contact.lead}</p>
+        </header>
+
+        <div className="contact-grid">
+          <form onSubmit={handleSubmit} className="stack" style={{ gap: 16 }}>
+            {submitted ? (
+              <div className="card" style={{ textAlign: 'center', padding: 32 }}>
+                <p style={{ fontWeight: 600 }}>Thanks — I'll get back to you soon.</p>
+                <p className="meta">gadgesanket75@gmail.com</p>
+              </div>
+            ) : (
+              <>
+                <div className="field">
+                  <label htmlFor="c-name">{t.contact.name}</label>
+                  <input id="c-name" name="name" className="input" type="text" autoComplete="name" required />
                 </div>
-                <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-text-secondary">Email Address</label>
-                    <input type="email" id="email" name="email" className="mt-1 block w-full bg-secondary border border-gray-600 rounded-md shadow-sm py-2 px-3 text-text-primary focus:outline-none focus:ring-accent focus:border-accent" required />
+                <div className="field">
+                  <label htmlFor="c-email">{t.contact.email}</label>
+                  <input id="c-email" name="email" className="input" type="email" autoComplete="email" required />
                 </div>
-                <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-text-secondary">Message</label>
-                    <textarea id="message" name="message" rows={4} className="mt-1 block w-full bg-secondary border border-gray-600 rounded-md shadow-sm py-2 px-3 text-text-primary focus:outline-none focus:ring-accent focus:border-accent" required></textarea>
+                <div className="field" style={{ gridColumn: '1 / -1' }}>
+                  <label htmlFor="c-message">{t.contact.message}</label>
+                  <textarea id="c-message" name="message" className="textarea" rows={4} autoComplete="off" required />
                 </div>
-                <div>
-                    <button type="submit" className="w-full bg-accent text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-500 transition-all duration-300 transform hover:scale-105">
-                        Send Message
-                    </button>
-                </div>
-            </form>
-        </div>
-        <div className="md:w-1/3 flex flex-col items-center md:items-start">
-            <h3 className="text-xl font-semibold mb-4 text-center md:text-left">Connect with me</h3>
-            <div className="flex space-x-6">
-                <a href="https://github.com/sanket758" target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-accent transition-colors"><GitHubIcon className="w-8 h-8" /></a>
-                <a href="https://www.linkedin.com/in/sanket758/" target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-accent transition-colors"><LinkedInIcon className="w-8 h-8" /></a>
+                <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
+                  {t.contact.send}
+                </button>
+              </>
+            )}
+          </form>
+
+          <div className="stack" style={{ gap: 24 }}>
+            <div>
+              <h3 className="h3" style={{ marginBottom: 8 }}>{t.contact.connectHeading}</h3>
+              <div style={{ display: 'flex', gap: 16, marginTop: 12 }}>
+                <a href="https://github.com/sanket758" target="_blank" rel="noopener noreferrer" className="meta" style={{ fontWeight: 600 }}>GitHub</a>
+                <a href="https://www.linkedin.com/in/sanket758/" target="_blank" rel="noopener noreferrer" className="meta" style={{ fontWeight: 600 }}>LinkedIn</a>
+              </div>
             </div>
-            <div className="mt-8 text-center md:text-left text-text-secondary">
-              <p className="font-semibold">Email</p>
-              <a href="mailto:gadgesanket75@gmail.com" className="hover:text-accent">gadgesanket75@gmail.com</a>
-              <p className="font-semibold mt-4">Location</p>
-              <p>Berlin, Germany</p>
+            <div>
+              <h3 className="h3" style={{ marginBottom: 8 }}>{t.contact.emailHeading}</h3>
+              <a href="mailto:gadgesanket75@gmail.com" className="meta" style={{ color: 'var(--accent)' }}>gadgesanket75@gmail.com</a>
             </div>
+            <div>
+              <h3 className="h3" style={{ marginBottom: 8 }}>{t.contact.locationHeading}</h3>
+              <p className="meta">{t.contact.location}</p>
+              <p className="meta" style={{ marginTop: 4 }}>{t.contact.workPermit}</p>
+            </div>
+            <button className="btn btn-ghost cv-download" onClick={() => downloadCV(lang)} style={{ display: 'inline-flex' }}>
+              {t.nav.cv}
+            </button>
+          </div>
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Contact;
+export default Contact

@@ -1,69 +1,73 @@
-
-import React, { useState, useEffect } from 'react';
-import type { Project } from '../types';
-import { getCollection } from '../firebase/firestoreService';
-import { GitHubIcon, ExternalLinkIcon } from './icons';
-
-const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
-  return (
-    <div className="bg-secondary rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300">
-      <img src={project.imageUrl} alt={project.title} className="w-full h-48 object-cover" />
-      <div className="p-6">
-        <h3 className="text-xl font-bold mb-2 text-text-primary">{project.title}</h3>
-        <p className="text-text-secondary mb-4 h-32 overflow-hidden">{project.description}</p>
-        <div className="flex flex-wrap gap-2 mb-4">
-          {project.techStack.map((tech) => (
-            <span key={tech} className="bg-gray-700 text-accent text-xs font-semibold px-2.5 py-1 rounded-full">
-              {tech}
-            </span>
-          ))}
-        </div>
-        <div className="flex justify-between items-center mt-6">
-            <a href={project.githubRepoUrl} target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-accent transition-colors flex items-center gap-2">
-                <GitHubIcon />
-                <span>Source Code</span>
-            </a>
-            {project.liveDemoUrl && (
-                <a href={project.liveDemoUrl} target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-accent transition-colors flex items-center gap-2">
-                    <ExternalLinkIcon />
-                    <span>Live Demo</span>
-                </a>
-            )}
-        </div>
-      </div>
-    </div>
-  );
-};
+import React from 'react'
+import { useLang } from '../i18n/LanguageContext'
+import ScrollReveal from './ScrollReveal'
+import { GlowCard } from './visuals/GlowCard'
+import { MiniOscilloscope } from './visuals/MiniOscilloscope'
 
 const Projects: React.FC = () => {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchProjects = async () => {
-      const data = await getCollection<Project>('projects');
-      setProjects(data);
-      setLoading(false);
-    };
-    fetchProjects();
-  }, []);
-
+  const { t } = useLang()
   return (
-    <section id="projects" className="py-24">
-      <h2 className="text-4xl font-bold text-center mb-12">
-        My Projects
-      </h2>
-      {loading ? (
-        <p className="text-center text-text-secondary">Loading projects...</p>
-      ) : (
-        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
-          {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
-        </div>
-      )}
-    </section>
-  );
-};
+    <section id="projects" className="section">
+      <div className="container max-w-4xl">
+        <header className="mb-16" style={{ textAlign: 'center' }}>
+          <p className="eyebrow">{t.nav.projects}</p>
+          <ScrollReveal><h2 className="h2">{t.projects.title}</h2></ScrollReveal>
+        </header>
+        <div className="grid-2" style={{ gap: 24 }}>
+          <GlowCard>
+            <div style={{ marginBottom: 12, borderRadius: 6, overflow: 'hidden', border: '1px solid var(--border)' }}>
+              <MiniOscilloscope seed={1} width={240} height={60} />
+            </div>
+            <div style={{ marginBottom: 12, borderRadius: '6px', overflow: 'hidden', border: '1px solid var(--border)' }}>
+              <img
+                src="/assets/cv_pipeline_illustration.jpg"
+                alt="Computer Vision Pipeline 3D Diagram"
+                style={{ width: '100%', height: '140px', objectFit: 'cover', display: 'block' }}
+              />
+            </div>
+            <h3 className="h3" style={{ marginBottom: 8 }}>Computer Vision Pipeline</h3>
+            <p className="text-sm text-muted" style={{ marginBottom: 12 }}>Colgate retail shelf monitoring with YOLOv5 fine-tuning on 500+ SKUs. Achieved 95% precision and 60% reduction in manual audits.</p>
+            <div className="pill-row" style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+              <span className="tag">PyTorch</span><span className="tag">OpenCV</span><span className="tag">AWS</span>
+            </div>
+          </GlowCard>
 
-export default Projects;
+          <GlowCard>
+            <div style={{ marginBottom: 12, borderRadius: 6, overflow: 'hidden', border: '1px solid var(--border)' }}>
+              <MiniOscilloscope seed={2} width={240} height={60} />
+            </div>
+            <h3 className="h3" style={{ marginBottom: 8 }}>OCR-Inc Sanctions Pipeline</h3>
+            <p className="text-sm text-muted" style={{ marginBottom: 12 }}>Data ingestion from 6 sources, deduplication via hash-based matching — 95% duplicate removal at scale.</p>
+            <div className="pill-row" style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+              <span className="tag">Python</span><span className="tag">AWS Lambda</span><span className="tag">S3</span>
+            </div>
+          </GlowCard>
+
+          <GlowCard>
+            <div style={{ marginBottom: 12, borderRadius: 6, overflow: 'hidden', border: '1px solid var(--border)' }}>
+              <MiniOscilloscope seed={3} width={240} height={60} />
+            </div>
+            <h3 className="h3" style={{ marginBottom: 8 }}>HRI Streax Auto-Counting</h3>
+            <p className="text-sm text-muted" style={{ marginBottom: 12 }}>SAM + DINOv2 segmentation for 10,000+ images/month — 90% reduction in manual product checks.</p>
+            <div className="pill-row" style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+              <span className="tag">Segment Anything</span><span className="tag">DINOv2</span><span className="tag">Python</span>
+            </div>
+          </GlowCard>
+
+          <GlowCard>
+            <div style={{ marginBottom: 12, borderRadius: 6, overflow: 'hidden', border: '1px solid var(--border)' }}>
+              <MiniOscilloscope seed={4} width={240} height={60} />
+            </div>
+            <h3 className="h3" style={{ marginBottom: 8 }}>Generative-AI Ad Prototype</h3>
+            <p className="text-sm text-muted" style={{ marginBottom: 12 }}>FAISS embeddings + PSD-layer parsing for Kellogg's creative replacement — 40% speedup with browser resource conservation.</p>
+            <div className="pill-row" style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+              <span className="tag">FAISS</span><span className="tag">Generative AI</span><span className="tag">PyTorch</span>
+            </div>
+          </GlowCard>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export default Projects

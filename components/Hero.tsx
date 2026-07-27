@@ -1,39 +1,108 @@
+import React from 'react'
+import { motion, useReducedMotion, type Variants } from 'framer-motion'
+import { useLang } from '../i18n/LanguageContext'
+import { downloadCV } from '../lib/generateCV'
+import FourierCanvas from './visuals/FourierCanvas'
 
-import React from 'react';
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 12 },
+  visible: (i: number) => ({
+    opacity: 1, y: 0,
+    transition: { delay: i * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+  }),
+}
 
 const Hero: React.FC = () => {
+  const { t, lang } = useLang()
+  const reduceMotion = useReducedMotion()
+
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center -mt-20">
-      <div className="text-center md:text-left flex flex-col md:flex-row items-center gap-12">
-        <div className="order-2 md:order-1 flex-1">
-          <h1 className="text-4xl md:text-6xl font-bold text-text-primary leading-tight mb-4">
-            Sanket Gadge
-          </h1>
-          <p className="text-xl md:text-2xl text-accent font-semibold mb-6">
-            AI & ML Engineer
-          </p>
-          <p className="text-lg text-text-secondary max-w-xl mx-auto md:mx-0 mb-8">
-            AI & ML Engineer with 4+ years' experience designing and deploying computer vision and NLP systems. Proven record of optimizing real-world AI pipelines for scale and ensuring GDPR-compliant deployments.
-          </p>
-          <div className="flex justify-center md:justify-start gap-4">
-            <a href="#projects" className="bg-accent text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-500 transition-all duration-300 transform hover:scale-105">
-              View Projects
-            </a>
-            <a href="#contact" className="bg-secondary text-text-primary font-semibold py-3 px-6 rounded-lg hover:bg-gray-600 transition-all duration-300 transform hover:scale-105">
-              Contact Me
-            </a>
-          </div>
-        </div>
-        <div className="order-1 md:order-2">
-            <img 
-                src="https://picsum.photos/seed/sanket-profile/320/320" 
-                alt="Sanket Gadge" 
-                className="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover border-4 border-secondary shadow-2xl"
-            />
-        </div>
+    <section id="hero" className="hero-section" data-od-id="hero">
+      <div style={{ position: 'absolute', inset: 0 }}>
+        <FourierCanvas />
+      </div>
+
+      <div className="hero-overlay">
+        <motion.p
+          className="eyebrow"
+          variants={fadeUp}
+          custom={0}
+          initial={reduceMotion ? false : 'hidden'}
+          animate="visible"
+        >
+          <span
+            className="dot"
+            style={{
+              background: 'var(--accent-blue)',
+              boxShadow: '0 0 0 4px color-mix(in oklch, var(--accent-blue) 18%, transparent)',
+            }}
+          />
+          {t.hero.eyebrow}
+        </motion.p>
+
+        <motion.h1
+          className="display"
+          variants={fadeUp}
+          custom={1}
+          initial={reduceMotion ? false : 'hidden'}
+          animate="visible"
+        >
+          {t.hero.headline}
+        </motion.h1>
+
+        <motion.p
+          className="lead hero-lead"
+          variants={fadeUp}
+          custom={2}
+          initial={reduceMotion ? false : 'hidden'}
+          animate="visible"
+        >
+          {t.hero.lead}
+        </motion.p>
+
+        <motion.div
+          className="hero-cta"
+          variants={fadeUp}
+          custom={3}
+          initial={reduceMotion ? false : 'hidden'}
+          animate="visible"
+        >
+          <motion.button
+            className="btn btn-primary btn-arrow"
+            whileHover={reduceMotion ? undefined : { scale: 1.02 }}
+            whileTap={reduceMotion ? undefined : { scale: 0.98 }}
+            onClick={() => {
+              const el = document.getElementById('projects')
+              if (el) el.scrollIntoView({ behavior: 'smooth' })
+            }}
+          >
+            {t.hero.primaryCta}
+          </motion.button>
+          <motion.button
+            className="btn btn-ghost"
+            whileHover={reduceMotion ? undefined : { scale: 1.02 }}
+            whileTap={reduceMotion ? undefined : { scale: 0.98 }}
+            onClick={() => downloadCV(lang)}
+          >
+            {t.hero.secondaryCta}
+          </motion.button>
+        </motion.div>
+
+        {t.hero.workPermit && (
+          <motion.p
+            className="meta"
+            style={{ marginTop: 24 }}
+            variants={fadeUp}
+            custom={4}
+            initial={reduceMotion ? false : 'hidden'}
+            animate="visible"
+          >
+            {t.hero.workPermit}
+          </motion.p>
+        )}
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Hero;
+export default Hero
