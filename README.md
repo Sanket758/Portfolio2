@@ -1,149 +1,138 @@
+# Sanket Gadge — Personal Portfolio
 
-# Sanket Gadge - Full-Stack Personal Portfolio
+Modern, responsive portfolio for an AI/ML Engineer. Dark scientific-instrument aesthetic with Canvas 2D signal-processing visuals. Zero backend — all content is static JSON, deployable anywhere.
 
-This repository contains the source code for a modern, responsive, and fully dynamic personal portfolio website for Sanket Gadge, an AI & ML Engineer. The project is built with React, Vite, and Tailwind CSS for the frontend, and leverages Google's Firebase for backend services, including Authentication and Firestore as a NoSQL database.
-
-The portfolio features a secure, dedicated admin portal where all content—such as projects, skills, and work experience—can be managed dynamically without touching the code.
-
-![Portfolio Screenshot](https://i.imgur.com/example.png) <!-- It's a good idea to replace this with an actual screenshot of your portfolio -->
+![Portfolio Screenshot](public/assets/headshot.jpg)
 
 ---
 
 ## ✨ Features
 
--   **Dynamic Content Management**: All portfolio data is fetched in real-time from a Firestore database.
--   **Secure Admin Portal**: A private `/admin` route protected by Firebase Authentication for CRUD (Create, Read, Update, Delete) operations on all portfolio content.
--   **Modern Tech Stack**: Built with React 18, Vite for lightning-fast development, and Tailwind CSS for utility-first styling.
--   **Fully Responsive**: Mobile-first design that looks great on all devices, from phones to desktops.
--   **Serverless Architecture**: No need to manage a backend server. The entire application is powered by Firebase's Backend-as-a-Service (BaaS).
--   **CI/CD Ready**: Set up for seamless continuous integration and deployment using Vercel.
+- **FourierCanvas Hero** — 5-wave Fourier synthesis with mouse-bend interaction and 8 traveling signal nodes. Pure Canvas 2D, no WebGL/Three.js.
+- **4 Signal Motifs** — MiniOscilloscope, PhaseStripe, EQBars, CompositeWaveUnderline — applied across sections for a cohesive instrumentation lab feel.
+- **Dark Scientific Palette** — `#05070f` background with cyan/teal signal accents (`#00e5ff`, `#00b8d4`, `#7c4dff`).
+- **DE/EN i18n** — Full German/English translations via `LanguageContext`. Language persisted in localStorage.
+- **Static Data Layer** — JSON files (`blogs.json`, `education.json`, `experience.json`, `sections.json`, `skills.json`) — no database needed.
+- **CV Generator** — Downloadable PDF CV built with jsPDF + html2canvas.
+- **Legal Pages** — Impressum (§5 TMG) and Datenschutz (DSGVO) included.
+- **Playwright Visual Regression** — 14 screenshot tests across desktop and mobile viewports.
+- **Fully Responsive** — Mobile-first layout from 390px to 1440px+.
+- **CI/CD Ready** — Vercel auto-deploys on push to `main`.
 
 ---
 
 ## 🚀 Getting Started
 
-Follow these instructions to set up and run the project on your local machine for development and testing purposes.
-
 ### Prerequisites
 
--   [Node.js](https://nodejs.org/) (v18 or newer)
--   [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
--   A Google account to create a Firebase project.
+- [Node.js](https://nodejs.org/) (v18 or newer)
+- npm
 
-### Installation & Setup
-
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/your-username/your-repo-name.git
-    cd your-repo-name
-    ```
-
-2.  **Install dependencies:**
-    ```bash
-    npm install
-    ```
-
-3.  **Set up environment variables:**
-    Create a new file named `.env` in the root of your project directory. Copy the contents of `.env.example` into it. You will populate this file with your Firebase credentials in the next step.
-
-    ```
-    # .env
-    VITE_FIREBASE_API_KEY=...
-    VITE_FIREBASE_AUTH_DOMAIN=...
-    VITE_FIREBASE_PROJECT_ID=...
-    VITE_FIREBASE_STORAGE_BUCKET=...
-    VITE_FIREBASE_MESSAGING_SENDER_ID=...
-    VITE_FIREBASE_APP_ID=...
-    ```
-
----
-
-## 🔥 Firebase Setup (Backend)
-
-This project uses Firebase for its database and authentication. You'll need to create a free Firebase project to get the necessary credentials.
-
-1.  **Create a Firebase Project:**
-    -   Go to the [Firebase Console](https://console.firebase.google.com/).
-    -   Click "Add project" and follow the on-screen instructions.
-
-2.  **Register a Web App:**
-    -   In your project's dashboard, click the Web icon (`</>`) to start the setup process.
-    -   Give your app a nickname (e.g., "Portfolio Website") and click "Register app".
-    -   Firebase will provide you with a `firebaseConfig` object. **Copy these keys** and paste them into your `.env` file.
-
-3.  **Enable Authentication:**
-    -   In the left sidebar, go to **Build > Authentication**.
-    -   Click "Get started".
-    -   Select **Email/Password** from the list of sign-in providers and enable it.
-    -   Go to the **Users** tab and click "Add user". Create your admin account with an email and a secure password. This will be your login for the admin portal.
-
-4.  **Set Up Firestore Database:**
-    -   In the left sidebar, go to **Build > Firestore Database**.
-    -   Click "Create database".
-    -   Start in **production mode** and choose a server location near you.
-    -   In the Firestore **Data** tab, create three collections: `projects`, `skills`, and `experiences`. You can leave them empty for now; you'll populate them using your admin dashboard.
-
-5.  **Configure Security Rules:**
-    -   Go to the **Rules** tab in Firestore.
-    -   Paste the following rules to allow public read access to your portfolio data but restrict write access to only your authenticated admin user.
-    ```
-    rules_version = '2';
-    service cloud.firestore {
-      match /databases/{database}/documents {
-        // Allow public read access for all collections
-        match /{collection}/{docId} {
-          allow read: if true;
-          // Allow write (create, update, delete) only for authenticated users
-          allow write: if request.auth != null;
-        }
-      }
-    }
-    ```
-    -   Click **Publish**.
-
----
-
-## 💻 Running the Project Locally
-
-Once you have set up Firebase and populated your `.env` file, you can run the development server:
+### Installation
 
 ```bash
+git clone https://github.com/Sanket758/Portfolio2.git
+cd Portfolio2
+npm install
 npm run dev
 ```
 
-The application will be available at `http://localhost:5173`. The admin portal can be accessed at `http://localhost:5173/admin`.
+The dev server starts at `http://localhost:3000`.
+
+No environment variables, API keys, or database setup required. The portfolio runs entirely on static data.
 
 ---
 
-## ☁️ Deployment with Vercel
+## 📁 Project Structure
 
-This project is optimized for deployment on Vercel, which offers a seamless CI/CD pipeline with its free hobby plan.
+```
+├── App.tsx                  # Root — i18n provider, scroll observer, section layout
+├── index.tsx                # Entry point
+├── index.css                # Global styles + CSS custom properties (palette)
+├── vite.config.ts           # Vite config, path aliases, dev server
+├── tailwind.config.js       # Tailwind — dark palette tokens
+├── playwright.config.ts     # Playwright — desktop (1440px) + mobile (390px)
+├── vercel.json              # Vercel SPA deployment config
+│
+├── components/
+│   ├── Header.tsx           # Sticky nav with active-section tracking
+│   ├── Hero.tsx             # Section wrapper for FourierCanvas
+│   ├── About.tsx            # Portrait + bio
+│   ├── Experience.tsx       # Timeline
+│   ├── Education.tsx        # Education timeline
+│   ├── Projects.tsx         # Project cards
+│   ├── Skills.tsx           # Skill bars
+│   ├── Writing.tsx          # Blog links
+│   ├── Contact.tsx          # Mailto form + social links
+│   ├── Footer.tsx           # Footer with legal links
+│   │
+│   ├── visuals/             # Canvas 2D signal components
+│   │   ├── FourierCanvas.tsx        # Hero — 5-wave Fourier synthesis
+│   │   ├── MiniOscilloscope.tsx     # About — waveform visualizer
+│   │   ├── PhaseStripe.tsx          # Experience — phase-shift stripes
+│   │   ├── EQBars.tsx               # Skills — equalizer bars
+│   │   ├── CompositeWaveUnderline.tsx # Section dividers
+│   │   ├── GlowCard.tsx             # Card glow effect
+│   │   ├── AboutPortrait.tsx        # About section portrait
+│   │   └── canvas-utils.ts          # Shared drawing primitives
+│   │
+│   └── admin/               # Admin panel (dead code — not imported by App.tsx)
+│
+├── i18n/
+│   ├── LanguageContext.tsx   # React context for DE/EN switching
+│   ├── de.ts                # German translations
+│   └── en.ts                # English translations
+│
+├── lib/
+│   ├── dataLoader.ts        # JSON data fetch helper
+│   └── generateCV.ts        # PDF CV generation (jsPDF + html2canvas)
+│
+├── pages/
+│   ├── Impressum.tsx        # §5 TMG legal notice
+│   └── Datenschutz.tsx      # DSGVO privacy policy
+│
+├── public/assets/           # Static images (headshot, pipeline illustration)
+├── tests/                   # Playwright visual regression tests
+└── *.json                   # Static data: blogs, education, experience, sections, skills
+```
 
-1.  **Push to GitHub:**
-    -   Create a new repository on [GitHub](https://github.com) and push your project code to it.
+---
 
-2.  **Import Project on Vercel:**
-    -   [Sign up for Vercel](https://vercel.com) with your GitHub account.
-    -   On your dashboard, click "Add New... -> Project".
-    -   Select your project's GitHub repository and click "Import".
+## 🧪 Testing
 
-3.  **Configure Environment Variables:**
-    -   Vercel will automatically detect that you have a Vite project.
-    -   Expand the **"Environment Variables"** section.
-    -   Add each variable from your `.env` file. For example:
-        -   **Name:** `VITE_FIREBASE_API_KEY`, **Value:** `your-api-key`
-        -   **Name:** `VITE_FIREBASE_AUTH_DOMAIN`, **Value:** `your-auth-domain`
-        -   ...and so on for all the keys.
+```bash
+# Run all Playwright tests (requires dev server)
+npm run test:e2e
 
-4.  **Deploy:**
-    -   Click the "Deploy" button. Vercel will build and deploy your site.
-    -   After a minute, you will have a live URL for your portfolio! Any subsequent pushes to your `main` branch will automatically trigger a new deployment.
+# Update visual baselines after intentional design changes
+npm run test:e2e:update
+
+# Run tests in headed mode for debugging
+npm run test:e2e:headed
+```
 
 ---
 
 ## 🛠️ Tech Stack
 
--   **Frontend:** React, Vite, TypeScript
--   **Styling:** Tailwind CSS
--   **Backend & Database:** Firebase (Authentication, Firestore)
--   **Deployment:** Vercel
+| Layer | Technology |
+|-------|-----------|
+| **Framework** | React 19, TypeScript 5.8 |
+| **Build** | Vite 6 |
+| **Styling** | Tailwind CSS 3.4 + CSS custom properties |
+| **Animation** | Canvas 2D, Framer Motion |
+| **i18n** | Custom React context (DE/EN) |
+| **CV PDF** | jsPDF 3.x + html2canvas |
+| **Testing** | Playwright 1.62 (visual regression) |
+| **Deployment** | Vercel (auto-deploy from GitHub) |
+
+---
+
+## ☁️ Deployment
+
+The repo includes `vercel.json` with Vite preset and SPA rewrites. To deploy:
+
+1. Push to `main` on GitHub
+2. Import the repo in [Vercel](https://vercel.com)
+3. Vercel auto-detects Vite — settings are pre-configured in `vercel.json`
+4. Click **Deploy** — subsequent pushes to `main` auto-deploy
