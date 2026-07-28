@@ -1,5 +1,5 @@
 import React from 'react'
-import { motion, useInView } from 'framer-motion'
+import { motion, useInView, useReducedMotion } from 'framer-motion'
 
 interface CompositeWaveUnderlineProps {
   width?: number
@@ -14,6 +14,7 @@ export const CompositeWaveUnderline: React.FC<CompositeWaveUnderlineProps> = ({
 }) => {
   const ref = React.useRef(null)
   const inView = useInView(ref, { once: true })
+  const prefersReducedMotion = useReducedMotion()
 
   const points: string[] = []
   for (let x = 0; x <= width; x += 2) {
@@ -34,16 +35,27 @@ export const CompositeWaveUnderline: React.FC<CompositeWaveUnderlineProps> = ({
       className={className}
       style={{ display: 'block', overflow: 'visible' }}
     >
-      <motion.path
-        d={`M ${points.join(' L ')}`}
-        fill="none"
-        stroke="url(#wave-gradient)"
-        strokeWidth={1.5}
-        strokeLinecap="round"
-        initial={{ pathLength: 0, opacity: 0 }}
-        animate={inView ? { pathLength: 1, opacity: 1 } : {}}
-        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-      />
+      {prefersReducedMotion ? (
+        <path
+          d={`M ${points.join(' L ')}`}
+          fill="none"
+          stroke="url(#wave-gradient)"
+          strokeWidth={1.5}
+          strokeLinecap="round"
+          style={{ opacity: 1 }}
+        />
+      ) : (
+        <motion.path
+          d={`M ${points.join(' L ')}`}
+          fill="none"
+          stroke="url(#wave-gradient)"
+          strokeWidth={1.5}
+          strokeLinecap="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={inView ? { pathLength: 1, opacity: 1 } : {}}
+          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+        />
+      )}
       <defs>
         <linearGradient id="wave-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
           <stop offset="0%" stopColor="#a78bfa" />

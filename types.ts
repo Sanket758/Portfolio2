@@ -1,4 +1,3 @@
-
 export interface Project {
   id: string;
   title: string;
@@ -28,9 +27,19 @@ export interface Experience {
 export interface Blog {
   id: string;
   title: string;
-  slug: string; // URL-friendly identifier
-  imageUrl: string;
-  summary: string;
-  content: string; // Full content, can be markdown
-  publishedDate: string; // e.g., "2024-07-29"
+  description: string;
+  blogUrl: string;
+  thumbnailUrl: string | null;
+  date: string; // e.g., "March 06, 2025"
+  slug?: string; 
+  content?: string; 
+  publishedDate?: string;
+}
+
+export interface Section {
+  id: string;
+  title: string;
+  componentId: string; // e.g., 'Hero', 'About', 'Projects'
+  isVisible: boolean;
+  order: number;
 }

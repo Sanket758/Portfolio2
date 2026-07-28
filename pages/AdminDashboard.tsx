@@ -6,12 +6,11 @@ import { useAuth } from '../auth/AuthContext';
 import ProjectManager from '../components/admin/ProjectManager';
 import SkillsManager from '../components/admin/SkillsManager';
 import ExperienceManager from '../components/admin/ExperienceManager';
-import BlogManager from '../components/admin/BlogManager';
 
 // Import Icons
-import { FolderIcon, SparklesIcon, BriefcaseIcon, DocumentTextIcon } from '../components/icons';
+import { FolderIcon, SparklesIcon, BriefcaseIcon } from '../components/icons';
 
-type View = 'projects' | 'skills' | 'experiences' | 'blogs';
+type View = 'projects' | 'skills' | 'experiences';
 
 const AdminDashboard: React.FC = () => {
   const { logout } = useAuth();
@@ -25,8 +24,6 @@ const AdminDashboard: React.FC = () => {
         return <SkillsManager />;
       case 'experiences':
         return <ExperienceManager />;
-      case 'blogs':
-        return <BlogManager />;
       default:
         return <p>Select a category to manage.</p>;
     }
@@ -56,7 +53,6 @@ const AdminDashboard: React.FC = () => {
             <NavItem view="projects" label="Projects" icon={<FolderIcon className="w-6 h-6" />} />
             <NavItem view="skills" label="Skills" icon={<SparklesIcon className="w-6 h-6" />} />
             <NavItem view="experiences" label="Experiences" icon={<BriefcaseIcon className="w-6 h-6" />} />
-            <NavItem view="blogs" label="Blogs" icon={<DocumentTextIcon className="w-6 h-6" />} />
           </ul>
         </nav>
         <div className="mt-auto">

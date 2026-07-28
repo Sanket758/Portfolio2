@@ -1,0 +1,30 @@
+[
+    {
+        "role": "MSc Artificial Intelligence",
+        "company": "University of Creative Arts (Berlin School of Business and Innovation)",
+        "period": "02/2025 – present",
+        "type": "education",
+        "description": [
+            "Berlin, Germany"
+        ]
+    },
+    {
+        "role": "BSc Computer Engineering",
+        "company": "Mumbai University",
+        "period": "2020",
+        "type": "education",
+        "description": [
+            "Mumbai, India",
+            "Diploma in Computer Engineering"
+        ]
+    },
+    {
+        "role": "Diploma in Computer Engineering",
+        "company": "VPM's Polytechnic",
+        "period": "2017",
+        "type": "education",
+        "description": [
+            "Thane, India"
+        ]
+    }
+]

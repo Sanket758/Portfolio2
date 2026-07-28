@@ -1,0 +1,55 @@
+[
+    {
+        "role": "Artificial Intelligence / Machine Learning Engineer",
+        "company": "Big Rattle Technologies Pvt Ltd",
+        "period": "10/2021 – 09/2024",
+        "type": "work",
+        "description": [
+            "Directed a team to develop a computer vision pipeline for Colgate’s shelf monitoring, reducing manual audits by 60% across retail sites.",
+            "Improved detection accuracy for similar-packaged goods by fine-tuning YOLOv5 on 500+ SKUs, achieving 95% precision in varied store layouts.",
+            "Built an OpenCV dimension-based algorithm to distinguish products by millimeter specs, increasing classification reliability by 15%.",
+            "Accelerated inference with Python multiprocessing, boosting production efficiency by 50%.",
+            "Adapted the same framework for Dabur’s global lineup, preparing scalable models for 300+ SKU expansion.",
+            "Streamlined sanctions data ingestion for OCR-INC, coordinating a 3-person team to parse feeds from 6 sources via AWS Lambda and EC2/S3, removing 95% of duplicates through hash-based deduplication.",
+            "Automated product counting for HRI’s Streax range, processing 10 000+ images per month using SAM and DinoV2 segmentation, reducing manual checks by 90%.",
+            "Verified Colgate field captures using GPS-based clustering, correcting 20% coordinate mismatches and ensuring 98% geofencing compliance.",
+            "Delivered a generative-AI prototype for Kellogg’s ad campaigns, integrating FAISS embeddings and PSD-layer parsing to accelerate creative replacement by 40% while conserving browser resources."
+        ]
+    },
+    {
+        "role": "Artificial Intelligence / Machine Learning Engineer",
+        "company": "EAZR DIGIPAYMENTS PVT LTD",
+        "period": "11/2020 – 10/2021",
+        "type": "work",
+        "description": [
+            "Tackled sparse credit data by designing an alternative scoring engine using device metadata, increasing approval accuracy by 25% for non-traditional applicants.",
+            "Streamlined KYC data capture through a React Native app integrating Axios for secure transmission, minimizing errors by 20%.",
+            "Implemented OCR verification for identity documents with OpenCV, reaching 90% accuracy and condensing processing from minutes to seconds.",
+            "Enhanced video-KYC fraud detection through liveness checks, improving compliance by 35%.",
+            "Processed unstructured SMS data with an NLP multi-class classifier in spaCy, reaching 92% accuracy in categorizing transactions and spam.",
+            "Created a custom NER system to extract financial details (e.g., amounts, dates), speeding up transaction insights."
+        ]
+    },
+    {
+        "role": "Volunteer - GDPR & Full Stack",
+        "company": "Klimaneustart Berlin",
+        "period": "07/2025 – 08/2025",
+        "type": "work",
+        "description": [
+            "Implemented GDPR-compliant data handling (PII separation, hashing, encryption), ensuring 100% secure storage and preventing potential privacy breaches.",
+            "Resolved a QR code generation flaw with a progressive save system, improving data integrity by 40% and meeting MVP stability within two weeks.",
+            "Designed a full-stack architecture (Express.js + MongoDB) with zero downtime, handling 50+ daily operations for the Climate Conversations Initiative.",
+            "Performed QA and post-deployment testing, fixing 15 bugs and achieving 99% uptime."
+        ]
+    },
+    {
+        "role": "Monitoring Software Developer",
+        "company": "Study League IT Solutions",
+        "period": "06/2018 – 07/2018",
+        "type": "work",
+        "description": [
+            "Developed installable Windows monitoring software and automated four scheduled scripts with precise timing logic, simplifying deployment.",
+            "Collaborated within a three-person team on design reviews and feature releases, ensuring reliable, on-time deliveries."
+        ]
+    }
+]

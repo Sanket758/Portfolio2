@@ -1,0 +1,37 @@
+[
+    {
+        "blogUrl": "https://sanket-gadge.blogspot.com/2025/03/understanding-german-tax-system-students.html",
+        "title": "Understanding the German Tax System: A Student’s Quick Guide",
+        "description": "Navigating taxes in Germany might seem overwhelming at first. Whether you’re a student, a resident, or a newcomer, this guide explains the basics — from why your net salary looks so different from your gross income to how to legally reduce your tax burden.",
+        "thumbnailUrl": null,
+        "date": "March 06, 2025"
+    },
+    {
+        "blogUrl": "https://sanket-gadge.blogspot.com/2021/06/training-custom-named-entity-recogniser.html",
+        "title": "Training a Custom Named Entity Recogniser",
+        "description": "Custom Named Entity Recognition with Spacy",
+        "date": "June 2021",
+        "thumbnailUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj6o_fQcW31AYr8J5Vh4m9m0u0zuWRYKVm1XkoUymijMQqGs2AiU636JjA7nJ7I2tTWupJQ_reiv5zyWt3e9-tAtFzbVUgW-K3ELWSh8FJY75jHKy2KSQaW-o5-XO4R3pSMQzxHMhOyM3E/w640-h360/SPACY.png"
+    },
+    {
+        "blogUrl": "https://sanket-gadge.blogspot.com/2021/02/reinforcement-learning-ucb-and-thompson.html",
+        "title": "Reinforcement Learning – UCB and Thompson Sampling",
+        "description": "Multi-armed bandit problem … a classic reinforcement learning problem that exemplifies the exploration–exploitation tradeoff.",
+        "date": "February 2021",
+        "thumbnailUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj6o_fQcW31AYr8J5Vh4m9m0u0zuWRYKVm1XkoUymijMQqGs2AiU636JjA7nJ7I2tTWupJQ_reiv5zyWt3e9-tAtFzbVUgW-K3ELWSh8FJY75jHKy2KSQaW-o5-XO4R3pSMQzxHMhOyM3E/w640-h360/SPACY.png"
+    },
+    {
+        "blogUrl": "https://sanket-gadge.blogspot.com/2020/11/image-denoising-using-auto-encoders.html",
+        "title": "Image Denoising Using Auto Encoders",
+        "description": "In this post, we will discuss, how to remove noise from an image using a type of neural network called Autoencoder … by training the network to ignore signal noise.",
+        "date": "November 2020",
+        "thumbnailUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj6o_fQcW31AYr8J5Vh4m9m0u0zuWRYKVm1XkoUymijMQqGs2AiU636JjA7nJ7I2tTWupJQ_reiv5zyWt3e9-tAtFzbVUgW-K3ELWSh8FJY75jHKy2KSQaW-o5-XO4R3pSMQzxHMhOyM3E/w640-h360/SPACY.png"
+    },
+    {
+        "blogUrl": "https://sanket-gadge.blogspot.com/2020/11/sentiment-analysis-on-imdb-dataset.html",
+        "title": "Sentiment Analysis On IMDB Dataset",
+        "description": "The main objective in this Project is to predict the sentiment for a number of movie reviews obtained from the Internet Movie Database (IMDb) … we will only be using the raw labeled movie reviews for our analysis.",
+        "date": "November 2020",
+        "thumbnailUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgP7IHE2Wjy0LFZzB6SqfXHBI29-UK-_qCEJJk8ZAUnAZ6woyDSO5lGicLmguhFGqwRqwpg_84ksauJIrJfmGA92d_Q_F-AM_tNeKD6esrreLfm0k5pTYZ1JAYM4Lu8drbYgcYFh87inwI/w640-h360/Sentiment+Analysis+on+IMDB+Movie+Reviews+dataset.png"
+    }
+]

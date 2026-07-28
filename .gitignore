@@ -22,3 +22,45 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.env
+
+# Playwright
+test-results/
+playwright-report/
+blob-report/
+
+# Portfolio dev — archived stale designs (keep on disk, don't track)
+archive/
+
+# Stale hero test artifacts (moved to archive/ but guard against regen)
+hero-test-v6/
+hero-test-v6-screenshot.png
+visual-qa-desktop.png
+visual-qa-mobile.png
+
+# Visual regression screenshots (regenerable via npm run test:e2e:update)
+test-screenshots/
+
+# Open Design external tool symlink
+open-design
+.open-design
+.open-design-cache/
+
+# Agent working files
+.agents/
+.omo/
+.playwright-mcp/
+
+# Brain vault symlink (personal Obsidian)
+docs/
+
+# Personal LLM/agent config (not portfolio code)
+CLAUDE.md
+BABE-PREFS.md
+UNCONVENTIONAL-WEB-DESIGN.md
+
+# CodeGraph index (regenerable)
+.codegraph/
+
+# Portfolio data JSON files (tracked — these are the live content source)
+# blogs.json, education.json, experience.json, sections.json, skills.json

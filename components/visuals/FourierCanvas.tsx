@@ -13,9 +13,9 @@ export interface FourierParams {
 }
 
 const DEFAULT_PARAMS: FourierParams = {
-  waveAmplitude: 1.0,
+  waveAmplitude: 2.0,
   waveFrequency: 1.0,
-  phaseSpeed: 1.0,
+  phaseSpeed: 2.0,
 }
 
 interface FourierCanvasProps {
@@ -33,6 +33,7 @@ const FourierCanvas: React.FC<FourierCanvasProps> = ({ params: overrideParams, c
 
   useEffect(() => {
     if (typeof window === 'undefined') return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { frozenRef.current = true; return }
     if (window.matchMedia('(pointer: coarse)').matches) { frozenRef.current = true; return }
     const observer = new MutationObserver(() => {
       if (frozenRef.current) return
