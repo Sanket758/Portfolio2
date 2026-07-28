@@ -2,8 +2,6 @@
 
 Modern, responsive portfolio for an AI/ML Engineer. Dark scientific-instrument aesthetic with Canvas 2D signal-processing visuals. Zero backend — all content is static JSON, deployable anywhere.
 
-![Portfolio Screenshot](public/assets/headshot.jpg)
-
 ---
 
 ## ✨ Features
