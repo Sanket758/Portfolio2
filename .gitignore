@@ -48,8 +48,15 @@ open-design
 
 # Agent working files
 .agents/
+.opencode/
+.storyboard/
 .omo/
 .playwright-mcp/
+
+# Disposable local visual-QA scratch
+probe*.mjs
+shot.mjs
+vision.mjs
 
 # Brain vault symlink (personal Obsidian)
 docs/
