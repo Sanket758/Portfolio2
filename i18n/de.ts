@@ -25,7 +25,7 @@ export const de = {
     headline: 'Sanket Gadge',
     lead: 'Ich baue Computer-Vision-Pipelines für den Einzelhandel, fahre KYC-OCR-Systeme und shippe Generative-AI-Prototypen, die in Produktion überleben. Aktuell suche ich eine Rolle in Deutschland — ob Werkstudent oder Festanstellung.',
     primaryCta: 'Projekte ansehen',
-    secondaryCta: 'Lebenslauf laden',
+    secondaryCta: 'Lebenslauf herunterladen',
     workPermit: '🔓 Offen für Werkstudent & Festanstellung (Nicht-EU gesprochen, aktuell auf Studentenarbeitserlaubnis)',
   },
   about: {

@@ -130,28 +130,6 @@ export const projects: Project[] = [
     localOnly: true,
     group: 'agentic',
   },
-  {
-    id: 'mcp-arena',
-    title: 'MCP Server + Skill Factory',
-    description:
-      'Own MCP server exposing JSON-schema model-delegation tools via a Unix-socket broker, plus a 6.7k-LOC eval-driven factory that authored 20+ agent skills with automated grading.',
-    metric: '~6.7k LOC · 20+ skills shipped',
-    tech: ['Python', 'MCP', 'JSON Schema', 'Evals'],
-    localOnly: true,
-    seeds: { wave: 8, eq: 8 },
-    group: 'agentic',
-  },
-  {
-    id: 'linkedin-apply',
-    title: 'LinkedIn Batch-Apply Bot',
-    description:
-      'Chrome DevTools Protocol browser agent that autonomously searches, fit-scores and submits applications with retry logic, hard guardrails and human escalation on unanswerable screening questions.',
-    tech: ['Python', 'CDP', 'Playwright', 'Guardrails'],
-    repo: 'Sanket758/german-career-ops',
-    localOnly: true,
-    seeds: { wave: 9, eq: 9 },
-    group: 'agentic',
-  },
   // ── Applied ML / Research ─────────────────────────────────────
   {
     id: 'credit-card-fraud',

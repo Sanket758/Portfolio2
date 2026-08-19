@@ -23,21 +23,23 @@ const Skills: React.FC = () => {
           <p className="eyebrow">{t.nav.skills}</p>
           <ScrollReveal><h2 className="h2">{t.skills.title}</h2></ScrollReveal>
         </header>
-        {Object.entries(SKILL_CATEGORIES).map(([key, { label, keys }]) => {
-          const items = skills.filter((s: any) => keys.includes(s.name))
-          if (items.length === 0) return null
-          return (
-            <div key={key} className="skill-group">
-              <h3>{label}</h3>
-              <CompositeWaveUnderline width={160} height={6} />
-              <div className="pill-row">
-                {items.map((s: any) => (
-                  <span key={s.name} className="pill">{s.name}</span>
-                ))}
+        <div className="grid-2" style={{ gap: 'var(--gap-2xl)', alignItems: 'start' }}>
+          {Object.entries(SKILL_CATEGORIES).map(([key, { label, keys }]) => {
+            const items = skills.filter((s: any) => keys.includes(s.name))
+            if (items.length === 0) return null
+            return (
+              <div key={key} className="skill-group">
+                <h3>{label}</h3>
+                <CompositeWaveUnderline width={160} height={6} />
+                <div className="pill-row">
+                  {items.map((s: any) => (
+                    <span key={s.name} className="pill">{s.name}</span>
+                  ))}
+                </div>
               </div>
-            </div>
-          )
-        })}
+            )
+          })}
+        </div>
       </div>
     </section>
   )

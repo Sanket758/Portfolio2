@@ -1,7 +1,6 @@
 import React from 'react'
 import { motion, useReducedMotion, type Variants } from 'framer-motion'
 import { useLang } from '../i18n/LanguageContext'
-import { downloadCV } from '../lib/generateCV'
 import FourierCanvas from './visuals/FourierCanvas'
 
 const fadeUp: Variants = {
@@ -13,7 +12,7 @@ const fadeUp: Variants = {
 }
 
 const Hero: React.FC = () => {
-  const { t, lang } = useLang()
+  const { t } = useLang()
   const reduceMotion = useReducedMotion()
 
   return (
@@ -78,14 +77,16 @@ const Hero: React.FC = () => {
           >
             {t.hero.primaryCta}
           </motion.button>
-          <motion.button
+          <motion.a
             className="btn btn-ghost"
+            href="/assets/Sanket-Gadge-Resume.pdf"
+            download="Sanket-Gadge-Resume.pdf"
+            aria-label={t.hero.secondaryCta}
             whileHover={reduceMotion ? undefined : { scale: 1.02 }}
             whileTap={reduceMotion ? undefined : { scale: 0.98 }}
-            onClick={() => downloadCV(lang)}
           >
             {t.hero.secondaryCta}
-          </motion.button>
+          </motion.a>
         </motion.div>
 
         {t.hero.workPermit && (

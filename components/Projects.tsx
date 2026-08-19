@@ -1,8 +1,7 @@
 import React from 'react'
 import ScrollReveal from './ScrollReveal'
 import { GlowCard } from './visuals/GlowCard'
-import { MiniOscilloscope } from './visuals/MiniOscilloscope'
-import { EQBars } from './visuals/EQBars'
+import { ProjectSpecimen } from './visuals/ProjectSpecimen'
 import { useLang } from '../i18n/LanguageContext'
 import {
   projects,
@@ -21,29 +20,23 @@ const GROUP_GLYPH: Record<ProjectGroup, string> = {
   backend: 'PY',
 }
 
-/** Alternate Canvas motif per group for a distinct header feel. */
-const useEqMotif = (group: ProjectGroup) => group === 'agentic' || group === 'edge' || group === 'applied-ml'
-
 const ProjectCard: React.FC<{ p: Project }> = ({ p }) => {
   const { t } = useLang()
   const repoHref = p.repo && !p.localOnly ? `https://github.com/${p.repo}` : undefined
 
   return (
     <GlowCard className="h-full flex flex-col min-w-0" style={{ padding: 22 }}>
-      {/* Canvas header — distinct per group */}
+      {/* Full-bleed technical specimen — category-specific core */}
       <div
         style={{
           marginBottom: 14,
           borderRadius: 6,
           overflow: 'hidden',
+          width: '100%',
           border: '1px solid var(--border)',
         }}
       >
-        {useEqMotif(p.group) ? (
-          <EQBars width={300} height={64} />
-        ) : (
-          <MiniOscilloscope seed={p.seeds.wave} width={300} height={64} />
-        )}
+        <ProjectSpecimen seed={p.seeds.wave} group={p.group} height={80} />
       </div>
 
       {/* Title + meta */}

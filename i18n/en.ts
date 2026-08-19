@@ -25,7 +25,7 @@ export const en = {
     headline: 'Sanket Gadge',
     lead: 'I build computer-vision pipelines for retail shelves, run OCR on KYC stacks, and ship generative-AI prototypes that survive contact with production. Currently looking for a role in Germany — Werkstudent or full-time.',
     primaryCta: 'View Work',
-    secondaryCta: 'Download CV',
+    secondaryCta: 'Download Resume',
     workPermit: '🔓 Open to Werkstudent & full-time (non-EU spoken, currently on student work permit)',
   },
   about: {

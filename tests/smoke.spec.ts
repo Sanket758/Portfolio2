@@ -112,6 +112,15 @@ test.describe('Smoke Tests', () => {
     await expect(page.locator('a[href="https://github.com/Sanket758/german-career-ops"]')).toHaveCount(0);
   });
 
+  test('resume CTA downloads the supplied PDF', async ({ page }) => {
+    await page.goto('/');
+    await page.waitForLoadState('networkidle');
+
+    const resume = page.locator('a[href="/assets/Sanket-Gadge-Resume.pdf"]');
+    await expect(resume).toHaveAttribute('download', 'Sanket-Gadge-Resume.pdf');
+    await expect(resume).toHaveText(/download resume|lebenslauf herunterladen/i);
+  });
+
   test('no broken images', async ({ page }) => {
     await page.goto('/');
     await page.waitForLoadState('networkidle');
