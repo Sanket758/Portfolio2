@@ -41,11 +41,13 @@ const Header: React.FC<HeaderProps> = ({ active, onNavigate }) => {
 
         {/* Desktop Nav */}
         {!isMobile && (
-          <nav style={{ display: 'flex', gap: 32, alignItems: 'center' }}>
+          <nav aria-label={t.nav.primary} style={{ display: 'flex', gap: 32, alignItems: 'center' }}>
           {links.map(l => (
             <a
               key={l.id}
               href={`#${l.id}`}
+              aria-current={active === l.id ? 'location' : undefined}
+              className={active === l.id ? 'active' : undefined}
               onClick={e => { e.preventDefault(); onNavigate(l.id) }}
               style={{
                 fontSize: 14, color: active === l.id ? 'var(--fg)' : 'var(--muted)',
@@ -57,7 +59,9 @@ const Header: React.FC<HeaderProps> = ({ active, onNavigate }) => {
             </a>
           ))}
           <button
+            type="button"
             onClick={toggle}
+            aria-label={t.nav.language}
             style={{
               background: 'transparent', border: '1px solid var(--border)', borderRadius: 'var(--radius-pill)',
               padding: '6px 12px', fontSize: 12, fontFamily: 'var(--font-mono)', color: 'var(--muted)',
@@ -71,28 +75,33 @@ const Header: React.FC<HeaderProps> = ({ active, onNavigate }) => {
 
         {/* Mobile menu button */}
         <button
+          type="button"
           className="mobile-menu-toggle"
           onClick={() => setMenuOpen(!menuOpen)}
           style={{ display: isMobile ? 'block' : 'none', background: 'transparent', border: 0, color: 'var(--fg)', fontSize: 24 }}
-          aria-label="Toggle menu"
+          aria-expanded={menuOpen}
+          aria-controls="mobile-navigation"
+          aria-label={menuOpen ? t.nav.closeMenu : t.nav.openMenu}
         >
           {menuOpen ? '✕' : '☰'}
         </button>
       </div>
 
       {menuOpen && (
-        <nav style={{ padding: '16px 0', borderTop: '1px solid var(--border)' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <nav id="mobile-navigation" className="mobile-nav" aria-label={t.nav.mobile} style={{ padding: '16px 0', borderTop: '1px solid var(--border)' }}>
+          <div className="container" style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             {links.map(l => (
               <a
                 key={l.id} href={`#${l.id}`}
+                aria-current={active === l.id ? 'location' : undefined}
+                className={active === l.id ? 'active' : undefined}
                 onClick={e => { e.preventDefault(); setMenuOpen(false); onNavigate(l.id) }}
-                style={{ color: 'var(--muted)', fontSize: 15, fontWeight: 500 }}
+                style={{ color: active === l.id ? 'var(--fg)' : 'var(--muted)', fontSize: 15, fontWeight: active === l.id ? 600 : 500 }}
               >
                 {l.label}
               </a>
             ))}
-            <button onClick={toggle} style={{ background: 'transparent', border: '1px solid var(--border)', borderRadius: 'var(--radius-pill)', padding: '6px 12px', fontSize: 12, fontFamily: 'var(--font-mono)', color: 'var(--muted)', cursor: 'pointer', alignSelf: 'flex-start' }}>
+            <button type="button" onClick={toggle} aria-label={t.nav.language} style={{ background: 'transparent', border: '1px solid var(--border)', borderRadius: 'var(--radius-pill)', padding: '6px 12px', fontSize: 12, fontFamily: 'var(--font-mono)', color: 'var(--muted)', cursor: 'pointer', alignSelf: 'flex-start' }}>
               {lang === 'de' ? 'EN' : 'DE'}
             </button>
           </div>

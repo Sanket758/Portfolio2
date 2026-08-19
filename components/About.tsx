@@ -22,6 +22,26 @@ const About: React.FC = () => {
           {t.about.permit && (
             <p className="meta" style={{ marginTop: 8 }}>{t.about.permit}</p>
           )}
+          <a
+            href={t.about.researchProfileUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="num"
+            aria-label={t.about.researchProfile}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 8,
+              marginTop: 22,
+              color: 'var(--accent)',
+              textDecoration: 'none',
+              borderBottom: '1px solid color-mix(in oklch, var(--accent) 35%, transparent)',
+              paddingBottom: 5,
+            }}
+          >
+            <span aria-hidden="true">↗</span>
+            {t.about.researchProfile}
+          </a>
         </div>
         <div>
           <AboutPortrait />

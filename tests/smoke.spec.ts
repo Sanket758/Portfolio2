@@ -55,6 +55,63 @@ test.describe('Smoke Tests', () => {
     }
   });
 
+  test('mobile navigation opens, is visible, and closes after navigation', async ({ page }, testInfo) => {
+    test.skip(!testInfo.project.name.includes('mobile'), 'Mobile menu is only rendered in the mobile project');
+    await page.goto('/');
+    await page.waitForLoadState('networkidle');
+
+    const toggle = page.locator('.mobile-menu-toggle');
+    await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+    await toggle.click();
+
+    const menu = page.locator('#mobile-navigation');
+    await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+    await expect(menu).toBeVisible();
+    await expect(menu.getByRole('link', { name: /projects|projekte/i })).toBeVisible();
+
+    await menu.getByRole('link', { name: /projects|projekte/i }).click();
+    await expect(menu).toBeHidden();
+    await page.waitForTimeout(800);
+    await expect(page.locator('#projects')).toBeInViewport();
+  });
+
+  test('component graph stays in viewport and preserves document order', async ({ page }) => {
+    await page.goto('/');
+    await page.waitForLoadState('networkidle');
+
+    const graph = await page.evaluate(() => {
+      const ids = ['hero', 'about', 'experience', 'education', 'projects', 'skills', 'writing', 'contact'];
+      const nodes = ids.map((id) => {
+        const element = document.getElementById(id);
+        if (!element) return null;
+        const rect = element.getBoundingClientRect();
+        return { id, left: rect.left, right: rect.right, width: rect.width, top: rect.top };
+      });
+      const viewportWidth = document.documentElement.clientWidth;
+      return {
+        missing: nodes.filter(Boolean).length !== ids.length,
+        overflow: nodes.filter(Boolean).some((node) => node!.left < -1 || node!.right > viewportWidth + 1 || node!.width > viewportWidth + 1),
+        ordered: nodes.every((node, index) => index === 0 || !node || !nodes[index - 1] || node.top >= nodes[index - 1]!.top),
+      };
+    });
+
+    expect(graph.missing).toBe(false);
+    expect(graph.overflow).toBe(false);
+    expect(graph.ordered).toBe(true);
+  });
+
+  test('research and evidence links expose honest destinations', async ({ page }) => {
+    await page.goto('/');
+    await page.waitForLoadState('networkidle');
+
+    const researchGate = page.locator('a[href*="researchgate.net"]');
+    await expect(researchGate).toHaveAttribute('target', '_blank');
+    await expect(researchGate).toHaveAttribute('rel', /noreferrer/);
+
+    await expect(page.getByText(/local build/i).first()).toBeVisible();
+    await expect(page.locator('a[href="https://github.com/Sanket758/german-career-ops"]')).toHaveCount(0);
+  });
+
   test('no broken images', async ({ page }) => {
     await page.goto('/');
     await page.waitForLoadState('networkidle');

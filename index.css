@@ -138,6 +138,14 @@ h1, h2, h3, h4 { text-wrap: balance; }
 .topnav nav a { font-size: 14px; color: var(--muted); font-weight: 500; transition: color 0.15s ease; }
 .topnav nav a:hover { color: var(--fg); }
 .topnav nav a.active { color: var(--fg); }
+.topnav a:focus-visible,
+.topnav button:focus-visible,
+.btn:focus-visible,
+.pagefoot a:focus-visible {
+  outline: 2px solid var(--accent-teal);
+  outline-offset: 4px;
+  border-radius: 3px;
+}
 .pagefoot { padding-block: var(--gap-xl); color: var(--muted); font-size: 13px; border-top: 1px solid var(--border); }
 .pagefoot .row-between { flex-wrap: wrap; gap: var(--gap-md); }
 
@@ -322,6 +330,41 @@ h1, h2, h3, h4 { text-wrap: balance; }
 .log-row h3 { font-size: 18px; margin: 0; }
 .log-row .pull { text-align: right; }
 
+/* ─── Project signal rail ────────────────────────────────────── */
+.project-rail {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  max-width: 920px;
+  margin: 28px auto 56px;
+}
+.project-rail a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 34px;
+  padding: 5px 10px 5px 6px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  color: var(--muted);
+  background: color-mix(in oklch, var(--surface) 72%, transparent);
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  transition: color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+.project-rail a:hover {
+  color: var(--fg);
+  border-color: var(--border-strong);
+  transform: translateY(-1px);
+}
+.project-rail a:focus-visible {
+  outline: 2px solid var(--accent-teal);
+  outline-offset: 3px;
+}
+.project-rail .pill { font-size: 9px; padding: 4px 7px; }
+
+
 /* ─── Contact form ───────────────────────────────────────────── */
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap-2xl); }
 @media (max-width: 920px) { .contact-grid { grid-template-columns: 1fr; } }
@@ -330,8 +373,14 @@ h1, h2, h3, h4 { text-wrap: balance; }
 .cv-download { display: inline-flex; align-items: center; gap: 8px; }
 
 /* ─── Responsive nav ─────────────────────────────────────────── */
+@media (max-width: 1040px) and (min-width: 769px) {
+  .topnav nav { gap: var(--gap-sm); }
+  .topnav nav a { font-size: 13px; }
+}
+
 @media (max-width: 768px) {
   .topnav nav { display: none; }
+  .topnav .mobile-nav { display: block; }
   .mobile-menu-toggle { display: block; }
 }
 

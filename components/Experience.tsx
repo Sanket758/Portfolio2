@@ -19,7 +19,7 @@ const Experience: React.FC = () => {
       <div className="container max-w-4xl">
         <header className="mb-16" style={{textAlign: 'center'}}>
           <p className="eyebrow">{t.nav.experience}</p>
-          <ScrollReveal delay={0.1}><h2 className="h2">{t.experience.title}</h2></ScrollReveal>
+          <ScrollReveal delay={100}><h2 className="h2">{t.experience.title}</h2></ScrollReveal>
         </header>
         <div className="timeline">
           {workItems.map((exp, i) => (

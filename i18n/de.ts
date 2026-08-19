@@ -14,6 +14,11 @@ export const de = {
     impressum: 'Impressum',
     datenschutz: 'Datenschutz',
     cv: 'Lebenslauf (PDF)',
+    primary: 'Hauptnavigation',
+    mobile: 'Mobile Navigation',
+    language: 'Sprache wechseln',
+    openMenu: 'Menü öffnen',
+    closeMenu: 'Menü schließen',
   },
   hero: {
     eyebrow: 'KI-/ML-Ingenieur · Berlin',
@@ -29,6 +34,8 @@ export const de = {
     location: 'Berlin, Deutschland',
     status: 'Student (BSBI Berlin, MSc KI, seit 2025)',
     permit: 'Work permit: Studentenarbeitserlaubnis — volle 120 Volltage erlaubt',
+    researchProfile: 'ResearchGate-Profil',
+    researchProfileUrl: 'https://www.researchgate.net/profile/Sanket-Gadge?ev=hdr_xprf',
   },
   experience: {
     title: 'Berufliche Erfahrung',
@@ -109,9 +116,11 @@ export const de = {
   },
   projects: {
     title: 'Projekte',
+    lead: 'Ausgewählte Open-Source-Flaggschiffe — Computer Vision, angewandtes ML, Robotik, agentische KI, Edge-ML und Backend-Engineering, aus meiner verifizierten Projekt-Evidenzbank. Kennzahlen stammen aus Dissertationen, Berichten und Test-Suiten.',
     loading: 'Projekte werden geladen…',
     sourceCode: 'Quellcode',
     liveDemo: 'Live-Demo',
+    localEvidence: 'Lokaler Build — wird aufbereitet',
   },
   skills: {
     title: 'Kompetenzen',

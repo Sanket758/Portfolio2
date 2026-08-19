@@ -19,7 +19,7 @@ const Education: React.FC = () => {
       <div className="container max-w-4xl">
         <header className="mb-16" style={{textAlign: 'center'}}>
           <p className="eyebrow">{t.nav.education}</p>
-          <ScrollReveal delay={0.1}><h2 className="h2">{t.education.title}</h2></ScrollReveal>
+          <ScrollReveal delay={100}><h2 className="h2">{t.education.title}</h2></ScrollReveal>
         </header>
         <div className="grid-3">
           {eduItems.map((edu, i) => (

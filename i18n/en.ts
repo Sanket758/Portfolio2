@@ -14,6 +14,11 @@ export const en = {
     impressum: 'Impressum',
     datenschutz: 'Privacy',
     cv: 'CV (PDF)',
+    primary: 'Primary navigation',
+    mobile: 'Mobile navigation',
+    language: 'Switch language',
+    openMenu: 'Open menu',
+    closeMenu: 'Close menu',
   },
   hero: {
     eyebrow: 'AI/ML Engineer · Berlin',
@@ -29,6 +34,8 @@ export const en = {
     location: 'Berlin, Germany',
     status: 'Student (BSBI Berlin, MSc AI since 2025)',
     permit: 'Work permit: Studentenarbeitserlaubnis — 120 full days allowed',
+    researchProfile: 'ResearchGate profile',
+    researchProfileUrl: 'https://www.researchgate.net/profile/Sanket-Gadge?ev=hdr_xprf',
   },
   experience: {
     title: 'Professional Experience',
@@ -109,9 +116,11 @@ export const en = {
   },
   projects: {
     title: 'Projects',
+    lead: 'Open-source flagship work — computer vision, applied ML, robotics, agentic AI, edge ML and backend engineering, selected from my verified project evidence. Metrics are from my dissertations, reports and test suites.',
     loading: 'Loading projects…',
     sourceCode: 'Source Code',
     liveDemo: 'Live Demo',
+    localEvidence: 'Local build — writing it up',
   },
   skills: {
     title: 'Technical Skills',

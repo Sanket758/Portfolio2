@@ -1,5 +1,5 @@
-import { motion, useInView, type Variants } from 'framer-motion'
-import { useReducedMotion } from 'framer-motion'
+import { motion, useInView, useReducedMotion, type Variants } from 'framer-motion'
+import { useRef } from 'react'
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 16 },
@@ -8,7 +8,9 @@ const fadeUp: Variants = {
 
 /**
  * ScrollReveal — wraps an element and animates it on IntersectionObserver entry.
- * Respects prefers-reduced-motion (disables animation).
+ * Respects prefers-reduced-motion (disables animation and shows content immediately).
+ *
+ * `delay` is in milliseconds.
  */
 const ScrollReveal: React.FC<{ children: React.ReactNode; className?: string; delay?: number }> = ({
   children,
@@ -16,16 +18,21 @@ const ScrollReveal: React.FC<{ children: React.ReactNode; className?: string; de
   delay = 0,
 }) => {
   const reduceMotion = useReducedMotion()
-  const ref = useInView({ once: true, margin: '-40px 0px -60px 0px' })
+  const ref = useRef<HTMLDivElement>(null)
+  const inView = useInView(ref, { once: true, margin: '-40px 0px -60px 0px' })
+
+  if (reduceMotion) {
+    return <div className={className}>{children}</div>
+  }
 
   return (
     <motion.div
       ref={ref}
       className={className}
-      initial={reduceMotion ? false : 'hidden'}
-      animate={ref ? 'visible' : 'hidden'}
+      initial="hidden"
+      animate={inView ? 'visible' : 'hidden'}
       variants={fadeUp}
-      style={{ transitionDelay: delay }}
+      transition={{ delay: delay / 1000 }}
     >
       {children}
     </motion.div>
