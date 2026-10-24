@@ -19,13 +19,6 @@ export default defineConfig({
     build: {
       outDir: 'dist',
       sourcemap: false,
-      rollupOptions: {
-        output: {
-          manualChunks: {
-            'pdf-vendor': ['jspdf'],
-          },
-        },
-      },
       chunkSizeWarningLimit: 800,
     }
 });

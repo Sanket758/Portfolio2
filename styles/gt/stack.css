@@ -1,0 +1,51 @@
+/* ============================================================
+   M4 · STACK — skill columns (chips only) + the filter bar.
+   Percentage bars are deliberately absent: the numeric levels in
+   skills.json are never rendered anywhere on this page.
+   Chip contract = [data-skill] (singular). Nodes elsewhere carry
+   data-skills (plural); stack.js paints .lit/.dim on those and
+   their own modules (work.css, evidence.css) own the visuals.
+   ============================================================ */
+
+/* ---------- filter bar (under the lede) ---------- */
+.stack-bar{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-top:16px}
+.stack-hint{font-family:var(--mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--faint,#6B7280)}
+.stack-hint::before{content:"\25B8";margin-right:7px;color:var(--cyan,#06B6D4)}
+.gt-clear{font-family:var(--mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink,#F9FAFB);background:rgba(6,182,212,.10);border:1px solid rgba(6,182,212,.55);border-radius:7px;padding:6px 11px;cursor:pointer}
+.gt-clear:hover{background:rgba(6,182,212,.18)}
+.gt-clear:focus-visible{outline:2px solid var(--cyan,#06B6D4);outline-offset:2px}
+.gt-clear[hidden]{display:none}
+/* live filter readout: what the click actually lit (stack.js writes it) */
+.stack-status{margin:0 0 0 auto;font-family:var(--mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace);font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--cyan,#06B6D4);white-space:nowrap}
+.stack-status::before{content:"\25B8";margin-right:7px;color:var(--cyan,#06B6D4)}
+.stack-status[hidden]{display:none}
+@media (max-width:760px){
+  .stack-status{margin-left:0;flex-basis:100%;white-space:normal}
+}
+
+/* ---------- columns: one instrument panel, hairline-divided ---------- */
+.stack-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;margin-top:20px;border:1px solid var(--card-line,rgba(255,255,255,.08));border-radius:var(--r,12px);background:var(--card-line,rgba(255,255,255,.08));overflow:hidden}
+.gt-col{background:var(--card,#111827);box-shadow:inset 0 1px 0 var(--card-hi,rgba(255,255,255,.055));padding:14px 14px 16px;min-width:0}
+.gt-col-head{display:flex;align-items:baseline;flex-wrap:wrap;gap:2px 8px;margin:0 0 12px;padding:0 0 10px;border-bottom:1px solid var(--line2,rgba(249,250,251,.055));font-family:var(--mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace);font-weight:500;line-height:1.3}
+.gt-col-idx{font-size:9.5px;letter-spacing:.1em;color:var(--cyan,#06B6D4)}
+.gt-col-title{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink,#F9FAFB)}
+.gt-col-count{margin-left:auto;font-size:9.5px;letter-spacing:.06em;color:var(--faint,#6B7280);white-space:nowrap}
+.gt-col-chips{display:flex;flex-wrap:wrap;gap:6px}
+
+/* ---------- chips (no transitions, no bars) ---------- */
+[data-skill]{font-family:var(--mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace);font-size:10px;line-height:1.25;letter-spacing:.03em;white-space:nowrap;color:var(--dim,#9CA3AF);background:var(--card2,#0D1420);border:1px solid var(--card-line,rgba(255,255,255,.08));border-radius:7px;padding:6px 9px;cursor:pointer}
+[data-skill]:hover{color:var(--ink,#F9FAFB);border-color:rgba(249,250,251,.24)}
+[data-skill]:focus-visible{outline:2px solid var(--cyan,#06B6D4);outline-offset:2px}
+/* selected: this skill is in the filter (aria-pressed="true" in lockstep) */
+[data-skill].lit{color:var(--ink,#F9FAFB);background:rgba(6,182,212,.22);border-color:#06B6D4}
+[data-skill].lit:hover{background:rgba(6,182,212,.30);border-color:#22C3DD}
+/* released while a filter is live — dimmed but still clickable (multi-select) */
+[data-skill].dim{opacity:.78}   /* AA: dimmed chips stay interactive; text must hold 4.5:1 (0.4 measured 2.17:1) */
+[data-skill].dim:hover{opacity:1}
+
+@media (max-width:1040px){
+  .stack-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:640px){
+  .stack-grid{grid-template-columns:minmax(0,1fr)}
+}

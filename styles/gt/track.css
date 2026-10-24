@@ -1,0 +1,22 @@
+/* M3 · TRACK — scroll host, legend/hint line, breathing room.
+   The chart keeps a readable minimum width; narrow screens scroll it
+   horizontally (region is focusable + labelled for keyboard users). */
+#track-host{overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:rgba(249,250,251,.22) transparent}
+#track-host:focus-visible{outline:2px solid var(--cyan);outline-offset:4px;border-radius:6px}
+#track-host .gt-trk{min-width:820px}
+#track-host .gt-trk-card{position:sticky;left:0}
+@media (max-width:900px){
+  #track-host{padding-right:24px}
+}
+
+/* legend + interaction hint (owner UX: make clickability explicit) */
+.track-key{display:flex;flex-wrap:wrap;align-items:center;gap:8px 22px;margin:20px 0 12px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.track-key .tk{display:inline-flex;align-items:center;gap:8px}
+.track-key .tk::before{content:"";width:20px;height:8px;border-radius:3px;border:1px solid}
+.track-key .tk-exp::before{background:rgba(6,182,212,.18);border-color:rgba(6,182,212,.6)}
+.track-key .tk-edu::before{background:rgba(16,185,129,.18);border-color:rgba(16,185,129,.6)}
+.track-key .tk-hint{color:var(--faint);letter-spacing:.09em}
+.track-key .tk-hint::before{content:"\25B8";margin-right:7px;color:var(--cyan)}
+
+/* extra scroll after the timeline ends before the next act (always additive to .sec) */
+#track{padding-bottom:calc(clamp(56px,9vw,110px) + clamp(40px,8vh,96px))}

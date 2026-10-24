@@ -1,0 +1,44 @@
+/* Self-hosted webfonts for the site (Inter 400/500/600, JetBrains Mono 400/500).
+   Files live in public/fonts/gt/ (latin subsets, SIL OFL 1.1 — attribution in
+   components/gt/README.md). No third-party font CDN: nothing to leak to a
+   font host and nothing to block first paint. */
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/gt/inter-latin-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/gt/inter-latin-500.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/gt/inter-latin-600.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/gt/jetbrains-mono-latin-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/gt/jetbrains-mono-latin-500.woff2') format('woff2');
+}

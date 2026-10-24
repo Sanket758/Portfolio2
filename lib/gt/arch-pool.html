@@ -1,0 +1,112 @@
+<!-- work-arch.html · W.01–W.03 architecture diagrams · inline SVG, presentation attributes only (M4 · agent D)
+     Geometry: 880×230 viewBox · 5 nodes 146×64 · 32px gaps · arrows y=102 · metric badge under the outcome node -->
+<figure class="arch" id="arch-retail">
+  <svg viewBox="0 0 880 230" width="100%" role="img" aria-label="Retail shelf intelligence pipeline: capture, GPS clustering, YOLOv5 detection on 500+ SKUs, OpenCV dimension check, audit report">
+    <title>Retail shelf intelligence — capture to audit report</title>
+    <defs>
+      <marker id="ah-retail" viewBox="0 0 6 6" refX="6" refY="3" markerWidth="6" markerHeight="6" markerUnits="strokeWidth" orient="auto">
+        <path d="M0,0.75 L6,3 L0,5.25 z" fill="#6B7280"/>
+      </marker>
+    </defs>
+
+    <rect x="11" y="70" width="146" height="64" rx="10" fill="#111827" stroke="#06B6D4" stroke-width="1.2"/>
+    <rect x="189" y="70" width="146" height="64" rx="10" fill="#111827" stroke="#F59E0B" stroke-width="1.2"/>
+    <rect x="367" y="70" width="146" height="64" rx="10" fill="#111827" stroke="#06B6D4" stroke-width="1.2"/>
+    <rect x="545" y="70" width="146" height="64" rx="10" fill="#111827" stroke="#06B6D4" stroke-width="1.2"/>
+    <rect x="723" y="70" width="146" height="64" rx="10" fill="#111827" stroke="#10B981" stroke-width="1.2"/>
+
+    <line x1="162" y1="102" x2="184" y2="102" stroke="#6B7280" stroke-width="1.2" marker-end="url(#ah-retail)"/>
+    <line x1="340" y1="102" x2="362" y2="102" stroke="#6B7280" stroke-width="1.2" marker-end="url(#ah-retail)"/>
+    <line x1="518" y1="102" x2="540" y2="102" stroke="#6B7280" stroke-width="1.2" marker-end="url(#ah-retail)"/>
+    <line x1="696" y1="102" x2="718" y2="102" stroke="#6B7280" stroke-width="1.2" marker-end="url(#ah-retail)"/>
+
+    <text x="21" y="97" font-family="JetBrains Mono, monospace" font-size="12" fill="#F9FAFB">Site capture</text>
+    <text x="21" y="113" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#9CA3AF">INPUT</text>
+    <text x="199" y="97" font-family="JetBrains Mono, monospace" font-size="12" fill="#F9FAFB">GPS clustering</text>
+    <text x="199" y="113" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#9CA3AF">DATA</text>
+    <text x="377" y="91" font-family="JetBrains Mono, monospace" font-size="12" fill="#F9FAFB"><tspan x="377" y="91">YOLOv5 · 500+</tspan><tspan x="377" y="105">SKUs</tspan></text>
+    <text x="377" y="120" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#9CA3AF">DETECTION</text>
+    <text x="555" y="91" font-family="JetBrains Mono, monospace" font-size="12" fill="#F9FAFB"><tspan x="555" y="91">OpenCV</tspan><tspan x="555" y="105">dimension check</tspan></text>
+    <text x="555" y="120" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#9CA3AF">MEASURE</text>
+    <text x="733" y="97" font-family="JetBrains Mono, monospace" font-size="12" fill="#F9FAFB">Audit report</text>
+    <text x="733" y="113" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#9CA3AF">OUTPUT</text>
+
+    <rect x="741" y="142" width="128" height="20" rx="6" fill="#111827" stroke="#10B981" stroke-width="1.2"/>
+    <text x="751" y="156" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" fill="#10B981">−60% manual audits</text>
+  </svg>
+  <figcaption>W.01 architecture — retail shelf intelligence</figcaption>
+</figure>
+
+<figure class="arch" id="arch-sku">
+  <svg viewBox="0 0 880 230" width="100%" role="img" aria-label="SKU vision pipeline: image, YOLO detection, DINOv3 / MobileNetV2 embeddings, FAISS index, top-k retrieval with few-shot support">
+    <title>SKU vision pipeline — image to few-shot retrieval</title>
+    <defs>
+      <marker id="ah-sku" viewBox="0 0 6 6" refX="6" refY="3" markerWidth="6" markerHeight="6" markerUnits="strokeWidth" orient="auto">
+        <path d="M0,0.75 L6,3 L0,5.25 z" fill="#6B7280"/>
+      </marker>
+    </defs>
+
+    <rect x="11" y="70" width="146" height="64" rx="10" fill="#111827" stroke="#06B6D4" stroke-width="1.2"/>
+    <rect x="189" y="70" width="146" height="64" rx="10" fill="#111827" stroke="#06B6D4" stroke-width="1.2"/>
+    <rect x="367" y="70" width="146" height="64" rx="10" fill="#111827" stroke="#F59E0B" stroke-width="1.2"/>
+    <rect x="545" y="70" width="146" height="64" rx="10" fill="#111827" stroke="#F59E0B" stroke-width="1.2"/>
+    <rect x="723" y="70" width="146" height="64" rx="10" fill="#111827" stroke="#10B981" stroke-width="1.2"/>
+
+    <line x1="162" y1="102" x2="184" y2="102" stroke="#6B7280" stroke-width="1.2" marker-end="url(#ah-sku)"/>
+    <line x1="340" y1="102" x2="362" y2="102" stroke="#6B7280" stroke-width="1.2" marker-end="url(#ah-sku)"/>
+    <line x1="518" y1="102" x2="540" y2="102" stroke="#6B7280" stroke-width="1.2" marker-end="url(#ah-sku)"/>
+    <line x1="696" y1="102" x2="718" y2="102" stroke="#6B7280" stroke-width="1.2" marker-end="url(#ah-sku)"/>
+
+    <text x="21" y="97" font-family="JetBrains Mono, monospace" font-size="12" fill="#F9FAFB">Image</text>
+    <text x="21" y="113" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#9CA3AF">INPUT</text>
+    <text x="199" y="97" font-family="JetBrains Mono, monospace" font-size="12" fill="#F9FAFB">YOLO detect</text>
+    <text x="199" y="113" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#9CA3AF">DETECTION</text>
+    <text x="377" y="91" font-family="JetBrains Mono, monospace" font-size="12" fill="#F9FAFB"><tspan x="377" y="91">DINOv3 /</tspan><tspan x="377" y="105">MobileNetV2 embed</tspan></text>
+    <text x="377" y="120" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#9CA3AF">EMBEDDING</text>
+    <text x="555" y="97" font-family="JetBrains Mono, monospace" font-size="12" fill="#F9FAFB">FAISS index</text>
+    <text x="555" y="113" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#9CA3AF">INDEX</text>
+    <text x="733" y="91" font-family="JetBrains Mono, monospace" font-size="12" fill="#F9FAFB"><tspan x="733" y="91">Top-k retrieval ·</tspan><tspan x="733" y="105">few-shot</tspan></text>
+    <text x="733" y="120" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#9CA3AF">RETRIEVAL</text>
+
+    <rect x="783" y="142" width="86" height="20" rx="6" fill="#111827" stroke="#10B981" stroke-width="1.2"/>
+    <text x="793" y="156" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" fill="#10B981">93.7% top-1</text>
+  </svg>
+  <figcaption>W.02 architecture — SKU vision pipeline (YOLO → embeddings → FAISS)</figcaption>
+</figure>
+
+<figure class="arch" id="arch-pose">
+  <svg viewBox="0 0 880 230" width="100%" role="img" aria-label="Cow pose pipeline: CVAT 26-keypoint dataset, YOLOv8n-pose training, model export, ROS 2 Jazzy and Gazebo simulation, real-time keypoints">
+    <title>Cow pose — dataset to real-time keypoints</title>
+    <defs>
+      <marker id="ah-pose" viewBox="0 0 6 6" refX="6" refY="3" markerWidth="6" markerHeight="6" markerUnits="strokeWidth" orient="auto">
+        <path d="M0,0.75 L6,3 L0,5.25 z" fill="#6B7280"/>
+      </marker>
+    </defs>
+
+    <rect x="11" y="70" width="146" height="64" rx="10" fill="#111827" stroke="#F59E0B" stroke-width="1.2"/>
+    <rect x="189" y="70" width="146" height="64" rx="10" fill="#111827" stroke="#06B6D4" stroke-width="1.2"/>
+    <rect x="367" y="70" width="146" height="64" rx="10" fill="#111827" stroke="#F59E0B" stroke-width="1.2"/>
+    <rect x="545" y="70" width="146" height="64" rx="10" fill="#111827" stroke="#06B6D4" stroke-width="1.2"/>
+    <rect x="723" y="70" width="146" height="64" rx="10" fill="#111827" stroke="#10B981" stroke-width="1.2"/>
+
+    <line x1="162" y1="102" x2="184" y2="102" stroke="#6B7280" stroke-width="1.2" marker-end="url(#ah-pose)"/>
+    <line x1="340" y1="102" x2="362" y2="102" stroke="#6B7280" stroke-width="1.2" marker-end="url(#ah-pose)"/>
+    <line x1="518" y1="102" x2="540" y2="102" stroke="#6B7280" stroke-width="1.2" marker-end="url(#ah-pose)"/>
+    <line x1="696" y1="102" x2="718" y2="102" stroke="#6B7280" stroke-width="1.2" marker-end="url(#ah-pose)"/>
+
+    <text x="21" y="91" font-family="JetBrains Mono, monospace" font-size="12" fill="#F9FAFB"><tspan x="21" y="91">CVAT · 26-kp</tspan><tspan x="21" y="105">dataset</tspan></text>
+    <text x="21" y="120" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#9CA3AF">DATASET</text>
+    <text x="199" y="91" font-family="JetBrains Mono, monospace" font-size="12" fill="#F9FAFB"><tspan x="199" y="91">YOLOv8n-pose</tspan><tspan x="199" y="105">training</tspan></text>
+    <text x="199" y="120" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#9CA3AF">TRAINING</text>
+    <text x="377" y="97" font-family="JetBrains Mono, monospace" font-size="12" fill="#F9FAFB">Model export</text>
+    <text x="377" y="113" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#9CA3AF">EXPORT</text>
+    <text x="555" y="91" font-family="JetBrains Mono, monospace" font-size="12" fill="#F9FAFB"><tspan x="555" y="91">ROS 2 Jazzy +</tspan><tspan x="555" y="105">Gazebo</tspan></text>
+    <text x="555" y="120" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#9CA3AF">RUNTIME</text>
+    <text x="733" y="91" font-family="JetBrains Mono, monospace" font-size="12" fill="#F9FAFB"><tspan x="733" y="91">Real-time</tspan><tspan x="733" y="105">keypoints</tspan></text>
+    <text x="733" y="120" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#9CA3AF">OUTPUT</text>
+
+    <rect x="777" y="142" width="92" height="20" rx="6" fill="#111827" stroke="#10B981" stroke-width="1.2"/>
+    <text x="787" y="156" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" fill="#10B981">+57.5% mAP50</text>
+  </svg>
+  <figcaption>W.03 architecture — cow pose (26 keypoints → YOLOv8n-pose → ROS 2)</figcaption>
+</figure>

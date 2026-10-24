@@ -1,7 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App'
+/* the global sheet first, then the app — styles/gt/ is imported by App and
+   must win the cascade against the legacy token aliases above */
 import './index.css'
+import App from './App'
 
 const rootElement = document.getElementById('root')
 if (!rootElement) {

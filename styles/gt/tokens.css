@@ -1,0 +1,42 @@
+/* ============================================================
+   GROUND TRUTH — design-lab 18 · Sanket Gadge
+   Tokens: flat, dark, instrument-grade. No gradients, no glow.
+   ============================================================ */
+:root{
+  /* surfaces */
+  --bg:#090D16;
+  --card:#111827;
+  --card2:#0D1420;
+  --card-line:rgba(255,255,255,.08);
+  --card-hi:rgba(255,255,255,.055);      /* top-edge highlight */
+  --line:rgba(249,250,251,.09);
+  --line2:rgba(249,250,251,.055);
+
+  /* ink */
+  --ink:#F9FAFB;
+  --dim:#9CA3AF;
+  --faint:#7E8795;   /* AA: >=4.5:1 on all panels (was #6B7280 -> 3.67:1) */
+
+  /* accents — flat fills only */
+  --cyan:#06B6D4;
+  --emerald:#10B981;
+  --amber:#F59E0B;
+  --red:#EF4444;
+
+  /* type */
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+
+  /* geometry */
+  --r:12px;
+  --r-s:10px;
+  --gut:clamp(18px,4.4vw,72px);
+  --nav-h:56px;
+  --maxw:1180px;
+
+  /* motion */
+  --t-fast:120ms;
+  --t:160ms;
+  --t-slow:200ms;
+  --ease:cubic-bezier(.22,1,.36,1);
+}

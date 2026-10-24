@@ -1,136 +1,126 @@
-# Sanket Gadge — Personal Portfolio
+# Sanket Gadge — Ground Truth
 
-Modern, responsive portfolio for an AI/ML Engineer. Dark scientific-instrument aesthetic with Canvas 2D signal-processing visuals. Zero backend — all content is static JSON, deployable anywhere.
-
----
-
-## ✨ Features
-
-- **FourierCanvas Hero** — 5-wave Fourier synthesis with mouse-bend interaction and 8 traveling signal nodes. Pure Canvas 2D, no WebGL/Three.js.
-- **4 Signal Motifs** — MiniOscilloscope, PhaseStripe, EQBars, CompositeWaveUnderline — applied across sections for a cohesive instrumentation lab feel.
-- **Dark Scientific Palette** — `#05070f` background with cyan/teal signal accents (`#00e5ff`, `#00b8d4`, `#7c4dff`).
-- **DE/EN i18n** — Full German/English translations via `LanguageContext`. Language persisted in localStorage.
-- **Static Data Layer** — JSON files (`blogs.json`, `education.json`, `experience.json`, `sections.json`, `skills.json`) — no database needed.
-- **CV Generator** — Downloadable PDF CV built with jsPDF + html2canvas.
-- **Legal Pages** — Impressum (§5 TMG) and Datenschutz (DSGVO) included.
-- **Playwright Visual Regression** — 14 screenshot tests across desktop and mobile viewports.
-- **Fully Responsive** — Mobile-first layout from 390px to 1440px+.
-- **CI/CD Ready** — Vercel auto-deploys on push to `main`.
+Personal site for **Sanket Gadge**, Computer Vision / AI engineer in Berlin. One page, drawn as a working perception pipeline: hero → inference bench → tracking timeline → flagship systems → skills cross-filter → measured evidence → contact. Fully static — React 19 + TypeScript + Vite, no backend, no analytics, no third-party requests.
 
 ---
 
-## 🚀 Getting Started
+## What is on the page
 
-### Prerequisites
+| Stage | Section | What it does |
+|---|---|---|
+| **01 INGEST** | `#ingest` | Hero: the four answers a recruiter screens for (role type, availability, work permit, languages) plus a KPI strip where every number carries its source file |
+| **02 PERCEIVE** | `#perceive` | Live inference bench — Canvas 2D detection scenes with confidence threshold, view mode, layer toggles, split view and a telemetry read-out. Synthetic parts are labelled as such |
+| **03 TRACK** | `#track` | Career drawn as multi-object tracking: seven real tracks on a 2012→2029 timeline; scroll scrubs the playhead, the record below follows it |
+| **04 RETRIEVE** | `#work` | Three flagship systems with problem/system/results, architecture view and repo/demo links, plus compact builds |
+| **05 CONTROL** | `#stack` | Skills as a filter control, not percentage bars — selecting a skill lights every evidence row that proves it |
+| **06 CALIBRATE** | `#evidence` | Measured-only benchmark table; anything without a measurement is not listed, and every row names its source |
+| **07 DEPLOY** | `#contact` | Contact payload as a JSON response + ID card, copy-email, CV download |
 
-- [Node.js](https://nodejs.org/) (v18 or newer)
-- npm
+Full DE/EN translations, dark + light themes (the instruments stay dark in light mode), reduced-motion parity, Impressum and Datenschutz for German law.
 
-### Installation
+---
+
+## Running it
 
 ```bash
 git clone https://github.com/Sanket758/Portfolio2.git
 cd Portfolio2
 npm install
-npm run dev
+npm run dev        # http://localhost:3000
 ```
 
-The dev server starts at `http://localhost:3000`.
-
-No environment variables, API keys, or database setup required. The portfolio runs entirely on static data.
-
----
-
-## 📁 Project Structure
-
-```
-├── App.tsx                  # Root — i18n provider, scroll observer, section layout
-├── index.tsx                # Entry point
-├── index.css                # Global styles + CSS custom properties (palette)
-├── vite.config.ts           # Vite config, path aliases, dev server
-├── tailwind.config.js       # Tailwind — dark palette tokens
-├── playwright.config.ts     # Playwright — desktop (1440px) + mobile (390px)
-├── vercel.json              # Vercel SPA deployment config
-│
-├── components/
-│   ├── Header.tsx           # Sticky nav with active-section tracking
-│   ├── Hero.tsx             # Section wrapper for FourierCanvas
-│   ├── About.tsx            # Portrait + bio
-│   ├── Experience.tsx       # Timeline
-│   ├── Education.tsx        # Education timeline
-│   ├── Projects.tsx         # Project cards
-│   ├── Skills.tsx           # Skill bars
-│   ├── Writing.tsx          # Blog links
-│   ├── Contact.tsx          # Mailto form + social links
-│   ├── Footer.tsx           # Footer with legal links
-│   │
-│   ├── visuals/             # Canvas 2D signal components
-│   │   ├── FourierCanvas.tsx        # Hero — 5-wave Fourier synthesis
-│   │   ├── MiniOscilloscope.tsx     # About — waveform visualizer
-│   │   ├── PhaseStripe.tsx          # Experience — phase-shift stripes
-│   │   ├── EQBars.tsx               # Skills — equalizer bars
-│   │   ├── CompositeWaveUnderline.tsx # Section dividers
-│   │   ├── GlowCard.tsx             # Card glow effect
-│   │   ├── AboutPortrait.tsx        # About section portrait
-│   │   └── canvas-utils.ts          # Shared drawing primitives
-│   │
-│   └── admin/               # Admin panel (dead code — not imported by App.tsx)
-│
-├── i18n/
-│   ├── LanguageContext.tsx   # React context for DE/EN switching
-│   ├── de.ts                # German translations
-│   └── en.ts                # English translations
-│
-├── lib/
-│   ├── dataLoader.ts        # JSON data fetch helper
-│   └── generateCV.ts        # PDF CV generation (jsPDF + html2canvas)
-│
-├── pages/
-│   ├── Impressum.tsx        # §5 TMG legal notice
-│   └── Datenschutz.tsx      # DSGVO privacy policy
-│
-├── public/assets/           # Static images (headshot, pipeline illustration)
-├── tests/                   # Playwright visual regression tests
-└── *.json                   # Static data: blogs, education, experience, sections, skills
-```
-
----
-
-## 🧪 Testing
+No environment variables, keys or database. Everything is static.
 
 ```bash
-# Run all Playwright tests (requires dev server)
-npm run test:e2e
-
-# Update visual baselines after intentional design changes
-npm run test:e2e:update
-
-# Run tests in headed mode for debugging
-npm run test:e2e:headed
+npm run build      # vite build → dist/ (does not typecheck)
+npx tsc --noEmit   # typecheck
+npm run test:e2e   # Playwright, desktop + mobile, starts its own dev server
+npm run og         # regenerate public/og.png (the social card) — needs a dev server
 ```
 
 ---
 
-## 🛠️ Tech Stack
+## Editing content
 
-| Layer | Technology |
-|-------|-----------|
-| **Framework** | React 19, TypeScript 5.8 |
-| **Build** | Vite 6 |
-| **Styling** | Tailwind CSS 3.4 + CSS custom properties |
-| **Animation** | Canvas 2D, Framer Motion |
-| **i18n** | Custom React context (DE/EN) |
-| **CV PDF** | jsPDF 3.x + html2canvas |
-| **Testing** | Playwright 1.62 (visual regression) |
-| **Deployment** | Vercel (auto-deploy from GitHub) |
+`lib/gt/content.ts` is the single rendered source: a typed `GtContent` object with an `en` and a `de` copy of every string, fact, KPI, timeline track, benchmark row and link. Change both languages together — they are type-checked against each other, so a missing translation fails the build.
+
+The root JSON files (`experience.json`, `education.json`, `skills.json`, `blogs.json`, `sections.json`) and `lib/projects.ts` are the **provenance record** the claims trace back to; the rendered copy in `content.ts` names its source (`src: 'experience.json — Big Rattle'`). Project claims must stay traceable to `.agents/github-project-inventory.md` / `.agents/local-agent-evidence-inventory.md`.
+
+Facts currently stated on the page: MSc AI completed 08/2026 (Berlin School of Business and Innovation), available immediately at 40 h/week, 18-month post-study job-seeker permit under § 20 AufenthG (change of status filed at LEA Berlin), German B1.
 
 ---
 
-## ☁️ Deployment
+## Project structure
 
-The repo includes `vercel.json` with Vite preset and SPA rewrites. To deploy:
+```
+├── App.tsx                  # ThemeProvider → GtSite → legal sections (no router)
+├── index.tsx                # Entry; loads index.css before the app so styles/gt wins
+├── index.css                # Tailwind + legacy token aliases for tailwind utilities
+├── vercel.json              # SPA rewrite + security headers (CSP, nosniff, HSTS, …)
+│
+├── components/gt/           # The site: Nav, Lab (hero + bench), Timeline, Work,
+│                            # Stack, Evidence, Writing, Contact, Footer, GtContext
+├── lib/gt/
+│   ├── content.ts           # all copy + facts, EN and DE, typed
+│   ├── bench.ts             # bench state machine, metrics, RAF loop
+│   ├── scenes.js            # Canvas 2D scenes (shelf / quadruped / landing)
+│   ├── timeline.ts, arch.ts # timeline geometry, architecture overlay
+│   └── projects.ts, *.json  # provenance record (see above)
+├── styles/gt/               # the design system: tokens, base, one file per section
+├── i18n/ThemeContext.tsx    # light/dark, persists `portfolio-theme`
+│
+├── pages/                   # Impressum + Datenschutz (inline sections)
+├── public/
+│   ├── fonts/gt/            # self-hosted Inter + JetBrains Mono (woff2)
+│   ├── assets/              # headshot, CV PDF
+│   ├── theme-init.js        # pre-paint theme bootstrap (kept out of HTML for the CSP)
+│   └── og.png               # social card, generated by scripts/make-og.mjs
+├── scripts/make-og.mjs      # renders og.png with Playwright
+├── design-lab/              # concept waves, untracked; 18-ground-truth is the live design
+└── tests/                   # smoke, theme/language, visual regression
+```
 
-1. Push to `main` on GitHub
-2. Import the repo in [Vercel](https://vercel.com)
-3. Vercel auto-detects Vite — settings are pre-configured in `vercel.json`
-4. Click **Deploy** — subsequent pushes to `main` auto-deploy
+---
+
+## Testing
+
+```bash
+npm run test:e2e              # 45 checks across 1440×900 and 390×844
+npm run test:e2e:update       # regenerate visual baselines (intentional design changes only)
+npx playwright test tests/smoke.spec.ts -g "bench"   # focused run
+```
+
+- `tests/smoke.spec.ts` — zero console errors, no horizontal overflow, every stage section present and in order, stage navigation, EN/DE switching, the skill cross-filter actually lighting evidence rows, bench controls driving the scene, CV download links, hiring facts on the page, no broken images, no failed requests, **every nav control inside the viewport**.
+- `tests/theme.spec.ts` — theme toggle, persistence, language persistence.
+- `tests/visual-regression.test.ts` — per-section screenshots, dark theme, canvases frozen by emulating `prefers-reduced-motion: reduce`.
+
+Baselines live in `tests/visual-regression.test.ts-snapshots/` and are platform-bound; review the diff before updating them.
+
+---
+
+## Tech stack
+
+| Layer | Technology |
+|---|---|
+| Framework | React 19, TypeScript 5.8 |
+| Build | Vite 6 |
+| Styling | Design tokens (CSS custom properties) + Tailwind utilities for the legal pages |
+| Visuals | Canvas 2D only — no WebGL, no chart library |
+| i18n | Typed content object (EN/DE) + document language |
+| Testing | Playwright 1.62 (smoke + visual regression) |
+| Deployment | Vercel, auto-deploy from `main` |
+
+Runtime dependencies: `react`, `react-dom`. That's all — Framer Motion and jsPDF were removed with the old site.
+
+---
+
+## Deployment and security
+
+Pushed to `main` → Vercel deploys. `vercel.json` sets the build (`npm run build` → `dist/`), SPA rewrites and headers:
+
+- `Content-Security-Policy`: `default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'`
+- `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy` with every feature disabled, `Strict-Transport-Security`, `Cross-Origin-Opener-Policy: same-origin`
+
+Because the CSP allows first-party scripts only, the pre-paint theme bootstrap lives in `public/theme-init.js` instead of an inline `<script>`; keep new scripts first-party. Fonts are self-hosted, there is no analytics, no cookie and no request to any third-party origin.
+
+`og:image` currently points at `/og.png` relative to this site — when a production domain exists, make the OG/Twitter URLs absolute in `index.html`, they have to be absolute for LinkedIn/Twitter to unfurl the card.

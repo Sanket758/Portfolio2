@@ -1,0 +1,166 @@
+/* ============================================================
+   Additions to the design-lab stylesheet.
+
+   Everything here is either (a) a surface the concept did not have
+   — the hiring-facts block, the writing list, nav tool buttons,
+   the footer, the legal pages — or (b) the light-theme token set.
+   Section styles live in their own files and stay untouched.
+   ============================================================ */
+
+/* ---------- nav tools (language + theme) ---------- */
+.nav-act a{display:inline-flex;align-items:center;gap:6px}
+.nav-act .tool{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-width:26px;height:26px;padding:0 6px;margin-left:2px;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;
+  color:var(--dim);background:transparent;border:1px solid var(--card-line);
+  border-radius:6px;cursor:pointer;
+}
+.nav-act .tool:hover{color:var(--ink);border-color:rgba(249,250,251,.24)}
+.nav-act .tool:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.nav-act .tool svg{display:block}
+
+/* ---------- hero: hiring facts ----------
+   Four answers a recruiter screens on before reading anything else:
+   role type, availability, permit, languages. Hairline grid, mono,
+   no boxes — it reads as instrument data, not as a badge cloud. */
+.gt-hire{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  margin-top:26px;border-top:1px solid var(--line);border-left:1px solid var(--line);
+  max-width:760px;
+}
+.gt-hire-row{
+  display:grid;grid-template-columns:minmax(88px,auto) 1fr;gap:10px;align-items:baseline;
+  padding:11px 14px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+  margin:0;
+}
+.gt-hire dt{
+  font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--faint);
+  white-space:nowrap;
+}
+.gt-hire dd{margin:0;font-size:11px;line-height:1.5;color:var(--ink)}
+@media (max-width:720px){
+  .gt-hire{grid-template-columns:1fr}
+}
+
+/* two solid CTAs side by side would read as a tie; the CV door is the
+   second most likely action on the page, so it gets its own accent */
+.btn.is-cv{background:var(--emerald);border-color:var(--emerald);color:#04121A;font-weight:600}
+.btn.is-cv:hover{background:#0ea371;border-color:#0ea371}
+
+/* ---------- 06 · writing ---------- */
+.gt-write{list-style:none;margin-top:22px;border-top:1px solid var(--line)}
+.gt-write-row{
+  display:grid;grid-template-columns:74px minmax(0,1fr);column-gap:20px;row-gap:3px;
+  padding:14px 0;border-bottom:1px solid var(--line2);align-items:baseline;
+}
+.gt-write-date{font-size:10px;letter-spacing:.1em;color:var(--faint);white-space:nowrap}
+.gt-write-link{
+  font-size:14.5px;font-weight:500;color:var(--ink);text-decoration:none;
+  justify-self:start;border-bottom:1px solid transparent;
+}
+.gt-write-link:hover{border-bottom-color:var(--cyan);color:var(--cyan)}
+.gt-write-link:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.gt-write-desc{grid-column:2;margin:0;font-size:12.5px;line-height:1.55;color:var(--dim)}
+@media (max-width:640px){
+  .gt-write-row{grid-template-columns:1fr}
+  .gt-write-desc{grid-column:1}
+}
+
+/* ---------- footer ---------- */
+.gt-foot{
+  max-width:var(--maxw);margin:0 auto;padding:26px var(--gut) 44px;
+  display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:14px 26px;
+  border-top:1px solid var(--line);
+}
+.gt-foot-note{margin:0;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.gt-foot-nav{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase}
+.gt-foot-nav a{color:var(--dim);text-decoration:none}
+.gt-foot-nav a:hover{color:var(--ink)}
+.gt-foot-nav a:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+
+/* ---------- legal pages (Impressum / Datenschutz) ----------
+   They keep their own copy and are painted with the page's tokens so a
+   recruiter who clicks through never lands on a different-looking site. */
+.gt-legal{max-width:var(--maxw);margin:0 auto;padding:clamp(56px,9vw,96px) var(--gut);border-top:1px solid var(--line)}
+.gt-legal .container{max-width:760px;margin:0;padding:0}
+.gt-legal .h1{font-size:clamp(24px,3.4vw,34px);line-height:1.1;margin:0 0 22px;color:var(--ink);letter-spacing:-.015em}
+.gt-legal .h2{font-size:18px;margin:26px 0 8px;color:var(--ink)}
+.gt-legal .card-flat{background:var(--card);border:1px solid var(--card-line);border-radius:var(--r);padding:20px 22px;box-shadow:inset 0 1px 0 var(--card-hi)}
+.gt-legal .lead{color:var(--ink);font-size:14px;line-height:1.65;margin:0}
+.gt-legal .text-sm{font-size:12.5px;line-height:1.65;margin:0}
+.gt-legal .text-xs{font-size:11.5px;line-height:1.6;margin:0}
+.gt-legal .h3{font-size:15px;font-weight:600;line-height:1.4;margin:22px 0 6px;color:var(--ink)}
+.gt-legal .section{padding:0}
+.gt-legal .text-muted{color:var(--dim)}
+.gt-legal .stack>*+*{margin-top:16px}
+.gt-legal a{color:var(--cyan)}
+
+/* ============================================================
+   Light theme.
+
+   The page turns into daylight paper, but the instruments stay screens:
+   the timeline keeps its dark panel and the bench keeps its dark canvas,
+   because a detection viewer on white is a picture of nothing. Tokens are
+   re-declared on html.light (specificity 0,1,1) so they win over both the
+   global :root set and the previous site's .light block.
+   ============================================================ */
+html.light{
+  --bg:#F2F4F8;
+  --card:#FFFFFF;
+  --card2:#EDF1F6;
+  --card-line:rgba(9,13,22,.13);
+  --card-hi:rgba(255,255,255,.9);
+  --line:rgba(9,13,22,.14);
+  --line2:rgba(9,13,22,.08);
+  --ink:#0B1220;
+  --dim:#4A5566;
+  --faint:#5B6472;
+  --cyan:#0E7490;
+  --emerald:#047857;
+  --amber:#B45309;
+  --red:#B91C1C;
+}
+html.light body{background:var(--bg);color:var(--ink)}
+html.light ::selection{background:var(--cyan);color:#FFFFFF}
+html.light #topnav{background:rgba(242,244,248,.86)}
+html.light .btn-solid,html.light .btn.is-cv{color:#FFFFFF}
+html.light .btn-ghost:hover{border-color:rgba(9,13,22,.3)}
+html.light .navfill{background:rgba(9,13,22,.08)}
+html.light [data-skill].lit{color:#FFFFFF}
+html.light #work [data-skills].dim :is(.gt-case-org,.gt-badge-k,.gt-block-lab,.gt-tag,.gt-repo,.gt-arch-btn,.gt-chip-line,.gt-chip-idx,.gt-chip-ic,figcaption){color:#4A5566}
+html.light .gt-ev tbody tr.lit .task{color:#0B1220}
+html.light .gt-ev tbody tr.lit{background:rgba(14,116,144,.08)}
+html.light .gt-ct-status .ok{color:#047857}
+html.light .gt-arch-btn:hover{border-color:rgba(9,13,22,.3)}
+html.light .gt-repo:hover,html.light .gt-demo:hover,html.light .gt-ct-btn:hover{color:var(--ink)}
+
+/* instruments stay dark: the dark token set is restored inside these hosts */
+html.light #track-host{
+  --card:#111827;
+  --card2:#0D1420;
+  --ink:#F9FAFB;
+  --dim:#9CA3AF;
+  --faint:#7E8795;
+}
+html.light .gt-trk .trk .gt-trk-lbl{color:#C3CAD6}
+html.light .gt-trk .trk.gt-trk-above .gt-trk-lbl{color:#C3CAD6}
+html.light .gt-trk .trk:hover .gt-trk-lbl{color:#F9FAFB}
+/* the bench frame is a screen: keep its surround dark so the canvas edge reads */
+html.light .frame,
+html.light .tele,
+html.light #tele-cv{
+  --card:#111827;
+  --card2:#0D1420;
+  --card-line:rgba(255,255,255,.12);
+  --line2:rgba(249,250,251,.08);
+  --ink:#F9FAFB;
+  --dim:#9CA3AF;
+  --faint:#7E8795;
+  --cyan:#06B6D4;
+  --amber:#F59E0B;
+}
+html.light .tele .ctl-lab{color:var(--dim)}
+html.light .tele .tele-rows dd{color:var(--ink)}
+html.light .tele .src{color:var(--faint)}
+html.light .tele .sim{color:#B45309}
